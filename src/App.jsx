@@ -1,15 +1,13 @@
 import { useState } from 'react'
 import './App.css'
+import { Route, Routes } from 'react-router-dom'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <div className="app">
-      <main>
-        <h1>Welcome to the App</h1>
-        <p>This is a simple React app with Vite.</p>
-      </main>
+      <Routes>
+        <Route path="/" element={<h1>Welcome to the App</h1>} />
+      </Routes>
     </div>
   )
 }
