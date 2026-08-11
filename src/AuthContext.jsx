@@ -26,10 +26,10 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-    const signUp = async (email, password) => {
+    const signUp = async (email, password, username) => {
         try {
             const result = await createUserWithEmailAndPassword(auth, email, password);
-            await updateProfile(result.user, { displayName: email  || 'User' });
+            await updateProfile(result.user, { displayName: username || 'User' });
         } catch (error) {
             throw new Error(error.message);
         }

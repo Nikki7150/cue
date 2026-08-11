@@ -11,16 +11,16 @@ const Login = () => {
     const [error, setError] = useState('');
     const [isSignUp, setIsSignUp] = useState(false);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
         try {
             if (isSignUp) {
-                signUp(email, password, username);
+                await signUp(email, password, username);
             } else {
-                login(email, password);
+                await login(email, password);
             }
-            navigate('/decks');
+            navigate('/');
         } catch (err) {
             setError(err.message || 'Something went wrong');
         }
