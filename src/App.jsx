@@ -7,15 +7,17 @@ import Upload from './pages/Upload';
 import Review from './pages/Review';
 import { useAuth } from './AuthContext'
 import ProtectedRoute from './components/ProtectedRoute';
-
+import Home from './pages/Home';
+import Navbar from './components/Navbar';
 
 function App() {
   const { user, loading } = useAuth();
 
   return (
     <div className="app">
+      <Navbar />
       <Routes>
-        <Route path="/" element={<h1>Welcome to the App</h1>} />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/upload" element={<ProtectedRoute><Upload /></ProtectedRoute>} />
         <Route path="/review" element={<ProtectedRoute><Review /></ProtectedRoute>} />
