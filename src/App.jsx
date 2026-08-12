@@ -21,6 +21,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/upload" element={<ProtectedRoute><Upload /></ProtectedRoute>} />
         <Route path="/review" element={<ProtectedRoute><Review /></ProtectedRoute>} />
+        <Route path="/review/:deckId" element={<ProtectedRoute><Review /></ProtectedRoute>} />
         <Route path="/decks" element={<ProtectedRoute><DeckList /></ProtectedRoute>} />
       </Routes>
     </div>

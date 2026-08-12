@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { generateCards } from '../lib/generateCards';
 import { useNavigate } from 'react-router-dom';
+import { saveDeck } from '../lib/decks';
+import { useAuth } from '../AuthContext';
 
 const Upload = () => {
     const [text, setText] = useState('');
@@ -8,6 +10,7 @@ const Upload = () => {
     const [file, setFile] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const { user } = useAuth();
 
     const handleGenerate = async () => {
         setLoading(true);
@@ -19,7 +22,8 @@ const Upload = () => {
             } else if (result.error === 'generation_failed') {
                 setError('An error occurred while generating the flashcards.');
             } else if (result.cards) {
-                navigate('/cards', { state: { cards: result.cards } });
+                const deckId = await saveDeck(user.uid, result.title, result.cards);
+                navigate('/review/' + deckId, { state: { cards: result.cards, title: result.title } });
             }
         } catch (error) {
             console.error('Error generating cards:', error);

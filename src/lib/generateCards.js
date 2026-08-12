@@ -5,19 +5,20 @@ const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
 const cardSchema = {
     type: "object",
     properties: {
+        title: { type: "string" },
         cards: {
-        type: "array",
-        items: {
-            type: "object",
-            properties: {
-            question: { type: "string" },
-            answer: { type: "string" },
+            type: "array",
+            items: {
+                type: "object",
+                properties: {
+                    question: { type: "string" },
+                    answer: { type: "string" },
+                },
+                required: ["question", "answer"],
             },
-            required: ["question", "answer"],
-        },
         },
     },
-    required: ["cards"],
+    required: ["title", "cards"],
 };
 
 export async function generateCards(text) {
@@ -45,7 +46,7 @@ export async function generateCards(text) {
     try {
         const result = await model.generateContent(prompt);
         const parsed = JSON.parse(result.response.text());
-        return { cards: parsed.cards };
+        return { cards: parsed.cards, title: parsed.title };
     } catch (err) {
         console.error("generateCards failed:", err);
         return { error: "generation_failed" };
