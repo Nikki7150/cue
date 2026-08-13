@@ -5,7 +5,9 @@ import {
     query, 
     where, 
     getDocs,
-    serverTimestamp
+    serverTimestamp, 
+    doc, 
+    getDoc
 } from 'firebase/firestore';
 
 export const saveDeck = async (userId, title, cards) => {
@@ -34,5 +36,19 @@ export const fetchDecks = async (userId) => {
     } catch (error) {
         console.error("fetchDecks failed:", error);
         return [];
+    }
+};
+
+export const fetchDeck = async (deckId) => {
+    const docRef = doc(db, "decks", deckId);
+    try { 
+        const snapshot = await getDoc(docRef);
+        if (!snapshot.exists()) {
+            return null;
+        }
+        return { id: snapshot.id, ...snapshot.data() };
+    } catch (error) {
+        console.error("fetchDeck failed:", error);
+        return null;
     }
 };
