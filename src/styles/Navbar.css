@@ -9,7 +9,7 @@
     justify-content: space-between;
     align-items: flex-start;
     background-color: #f6f1e8;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.796);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.25);
     z-index: 1000;
     width: 220px;
     overflow: hidden;

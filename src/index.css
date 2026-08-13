@@ -5,4 +5,5 @@ html {
     background-color: #f6f1e8;
     margin-left: 220px;
     padding: 30px;
+    overflow-y: hidden;
 }

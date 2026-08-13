@@ -4,6 +4,8 @@ import { fetchDeck } from '../lib/decks';
 import LoadingSpinner from '../components/LoadingSpinner';
 import Flashcard from '../components/Flashcard';
 import '../styles/Review.css';
+import { MdArrowBack, MdNavigateNext } from "react-icons/md";
+import { IoMdRefresh } from "react-icons/io";
 
 const Review = () => {
     const { deckId } = useParams();
@@ -15,6 +17,7 @@ const Review = () => {
     const [isAnswer, setIsAnswer] = useState(false);
     const [error, setError] = useState(null);
     const [isDeckDone, setIsDeckDone] = useState(false);
+    const [cards, setCards] = useState([]);
 
     useEffect(() => {
         if (!deckId) {
@@ -23,6 +26,7 @@ const Review = () => {
         }
         fetchDeck(deckId).then((result) => {
             setDeck(result);
+            setCards(result.cards);
             setLoading(false);
         }).catch((error) => {
             setError(error);
@@ -43,32 +47,51 @@ const Review = () => {
         setIsAnswer(!isAnswer);
     };
 
+    const handleDontKnow = () => {
+        const newCards = [...cards];
+        const removedCard = newCards.splice(cardIndex, 1)[0];
+        newCards.push(removedCard);
+        setCards(newCards);
+        setIsAnswer(false);
+    };
+
     return (
         <div className="review-container">
-            <h1>Review</h1>
+            <div className="review-header">
+                <button onClick={() => navigate(-1)} className="back-button">
+                    <MdArrowBack />
+                </button>
+                <h1 className="review-title">Review</h1>
+            </div>
             {!deckId &&
-                <p>go to Decks and pick a deck to review.</p>
+                <p className="review-page">go to Decks and pick a deck to review.</p>
             }
             {deck && isDeckDone && (
-                <p>Review complete!</p>
+                <p className="review-page">Review complete!</p>
             )}
             {error && (
-                <p>Error: {error.message}</p>
+                <p className="review-page">Error: {error.message}</p>
             )}
             {loading && (
                 <LoadingSpinner />
             )}
             {deck && !isDeckDone && (
                 <div className="review-content">
-                    <p>Reviewing card {cardIndex + 1} of {deck.cards.length}</p>
+                    <p className="review-page">Reviewing card {cardIndex + 1} of {deck.cards.length}</p>
                     <Flashcard 
-                        question={deck.cards[cardIndex].question} 
-                        answer={deck.cards[cardIndex].answer} 
+                        question={cards[cardIndex].question} 
+                        answer={cards[cardIndex].answer} 
                         isAnswer={isAnswer}
                         onFlip={handleFlip}
                     />
-                    <button onClick={handleFlip}>Flip</button>
-                    <button onClick={handleNext}>Next</button>
+                    <div className="review-buttons">
+                        <button className="again-button" onClick={handleDontKnow}>
+                            <IoMdRefresh />
+                        </button>
+                        <button onClick={handleNext}>
+                            <MdNavigateNext />
+                        </button>
+                    </div>
                 </div>
             )}
         </div>

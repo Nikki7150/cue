@@ -1,10 +1,11 @@
 .flashcard-container {
     perspective: 1000px;
-    width: 100%;
-    max-width: 500px;
-    height: 300px;
+    width: 900px;
+    aspect-ratio: 5 / 3;
+    height: auto;
     cursor: pointer;
     margin-bottom: 50px;
+    font-size: 1.5rem;
 }
 
 .flashcard-inner {
@@ -38,8 +39,26 @@
     justify-content: center;
     text-align: center;
     box-sizing: border-box;
+    font-family: 'Unkempt', cursive;
+    padding: 24px;
 }
 
 .flashcard-back {
     transform: rotateY(180deg);
+    font-family: 'Schoolbell', cursive;
+}
+
+.flashcard-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.25rem;
+    color: #000;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.flashcard-button:hover {
+    color: #7a8c7c;
 }
