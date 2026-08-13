@@ -8,6 +8,9 @@ import '../styles/Navbar.css';
 const Navbar = () => {
     return (
         <nav className="navbar">
+            <div className="navbar-logo">
+                <h2>Cue</h2>
+            </div>
             <div className="navbar-links">
                 <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : '')}>
                     <span className="nav-icon"><IoHomeOutline size={25} /></span>
@@ -25,6 +28,9 @@ const Navbar = () => {
                     <span className="nav-icon"><PiCardsThree size={25} /></span>
                     <span className="nav-label">Decks</span>
                 </NavLink>
+            </div>
+            <div className="navbar-profile">
+                <p>User Profile</p>
             </div>
         </nav>
     );
