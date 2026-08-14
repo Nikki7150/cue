@@ -7,7 +7,8 @@ import {
     getDocs,
     serverTimestamp, 
     doc, 
-    getDoc
+    getDoc,
+    updateDoc
 } from 'firebase/firestore';
 
 export const saveDeck = async (userId, title, cards) => {
@@ -50,5 +51,15 @@ export const fetchDeck = async (deckId) => {
     } catch (error) {
         console.error("fetchDeck failed:", error);
         return null;
+    }
+};
+
+export const updateTitle = async (deckId, newTitle) => {
+    const docRef = doc(db, "decks", deckId);
+    try {
+        await updateDoc(docRef, { title: newTitle });
+    } catch (error) {
+        console.error("updateTitle failed:", error);
+        throw error;
     }
 };
