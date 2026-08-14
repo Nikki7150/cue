@@ -1,0 +1,51 @@
+.deck-list-container {
+    margin: 0;
+    padding-left: 20px;
+}
+.deck-list-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    font-family: 'Emilys Candy', cursive;
+}
+
+.deck-list {
+    list-style: none;
+    padding: 0;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+.deck-item {
+    margin-bottom: 20px;
+    width: fit-content;
+    position: relative;
+}
+
+.deck-menu-button {
+    background: rgba(255, 255, 255, 0.79);
+    border: none;
+    cursor: pointer;
+    color: #333;
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.menu-popover {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+.deck-item:hover .deck-menu-button {
+    display: block;
+}

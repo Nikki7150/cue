@@ -1,0 +1,62 @@
+.deck {
+    position: relative;
+    width: 320px;
+    aspect-ratio: 5 / 3;
+    height: auto;
+    cursor: pointer;
+}
+
+.deck-box {
+    position: absolute;
+    inset: 0;
+    background: #ffffff64;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    align-items: center;
+    justify-content: center;
+}
+
+.deck-cards {
+    background: #ffffff;
+    border-radius: 5px;
+    width: 94%;
+    aspect-ratio: 5 / 3;
+    height: 90%;
+    margin: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.deck-lid {
+    position: absolute;
+    inset: 0;
+    background: #ffffff46;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    text-align: center;
+}
+
+.deck:hover .deck-lid {
+    transform: translateX(20%) rotate(-4deg);
+}
+
+
+.deck-name {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+    font-family: 'Unkempt', cursive;
+    background: rgba(124, 159, 129, 0.509);
+    width: 80%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    mask: radial-gradient(5px at 50% 5px,#0000 calc(100% - 1px),#000) 50% -5px/9.25px 100%,
+    radial-gradient(5px at 5px 50%,#0000 calc(100% - 1px),#000) -5px/100% 9.25px;
+    mask-composite: intersect;
+}
