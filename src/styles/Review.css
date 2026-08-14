@@ -5,10 +5,17 @@
 
 .review-header {
     display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header-content {
+    display: flex;
     align-items: center;
     gap: 20px;
-    justify-content: flex-start;
-    max-width: 800px;
 }
 
 .back-button {
@@ -29,6 +36,15 @@
     font-family: 'Emilys Candy', cursive;
     font-size: 1.5rem;
     align-self: flex-start;
+    margin-top: -5px;
+}
+
+.deck-title {
+    margin: 0;
+    font-family: 'Unkempt', cursive;
+    font-size: 1.25rem;
+    margin-top: -5px;
+    margin-left: -50px;
 }
 
 .review-content {
@@ -44,12 +60,39 @@
 
 .review-buttons {
     display: flex;
-    gap: 800px;
+    gap: 20px;
     justify-content: space-between;
+    width: 100%;
+    max-width: 900px;
+    margin-left: 50px;
 }
 
 .review-page {
     font-family: 'Unkempt', cursive;
     font-size: 1.25rem;
     margin: 0;
+    margin-left: 50px;
+}
+
+.again-button, .next-button, .shuffle-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.25rem;
+    color: #000;
+    padding: 0;
+    border-radius: 5px;
+}
+
+.again-button:hover, .next-button:hover, .shuffle-button:hover {
+    color: #7a8c7c;
+}
+
+.review-text {
+    font-family: 'Unkempt', cursive;
+    font-size: 1.75rem;
+    margin: 0;
+    margin-top: 350px;
+    width: 100%;
+    text-align: center;
 }

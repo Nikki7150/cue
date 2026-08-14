@@ -6,6 +6,7 @@ import Flashcard from '../components/Flashcard';
 import '../styles/Review.css';
 import { MdArrowBack, MdNavigateNext } from "react-icons/md";
 import { IoMdRefresh } from "react-icons/io";
+import { PiShuffle } from "react-icons/pi";
 
 const Review = () => {
     const { deckId } = useParams();
@@ -55,22 +56,37 @@ const Review = () => {
         setIsAnswer(false);
     };
 
+    const handleShuffle = () => {
+        const newCards = [...cards];
+        for (let i = newCards.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [newCards[i], newCards[j]] = [newCards[j], newCards[i]];
+        }
+        setCards(newCards);
+    };
+
     return (
         <div className="review-container">
             <div className="review-header">
-                <button onClick={() => navigate(-1)} className="back-button">
-                    <MdArrowBack />
+                <div className="header-content">
+                    <button onClick={() => navigate(-1)} className="back-button">
+                        <MdArrowBack />
+                    </button>
+                    <h1 className="review-title">Review</h1>
+                </div>
+                <p className="deck-title">{deck?.title}</p>
+                <button className="shuffle-button" onClick={handleShuffle}>
+                    <PiShuffle size={26} />
                 </button>
-                <h1 className="review-title">Review</h1>
             </div>
             {!deckId &&
-                <p className="review-page">go to Decks and pick a deck to review.</p>
+                <p className="review-text">go to Decks and pick a deck to review.</p>
             }
             {deck && isDeckDone && (
-                <p className="review-page">Review complete!</p>
+                <p className="review-text">Review complete!</p>
             )}
             {error && (
-                <p className="review-page">Error: {error.message}</p>
+                <p className="review-text">Error: {error.message}</p>
             )}
             {loading && (
                 <LoadingSpinner />
@@ -86,10 +102,10 @@ const Review = () => {
                     />
                     <div className="review-buttons">
                         <button className="again-button" onClick={handleDontKnow}>
-                            <IoMdRefresh />
+                            <IoMdRefresh size={26} />
                         </button>
-                        <button onClick={handleNext}>
-                            <MdNavigateNext />
+                        <button className="next-button" onClick={handleNext}>
+                            <MdNavigateNext size={26} />
                         </button>
                     </div>
                 </div>

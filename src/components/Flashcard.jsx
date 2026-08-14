@@ -8,13 +8,13 @@ const Flashcard = ({ question, answer, isAnswer, onFlip }) => {
                 <div className="flashcard-front">
                     {question}
                     <button onClick={onFlip} className="flashcard-button">
-                        <CgEditFlipH />
+                        <CgEditFlipH  size={26} />
                     </button>
                 </div>
                 <div className="flashcard-back">
                     {answer}
                     <button onClick={onFlip} className="flashcard-button">
-                        <CgEditFlipH />
+                        <CgEditFlipH  size={26} />
                     </button>
                 </div>
             </div>
