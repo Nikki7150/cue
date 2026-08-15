@@ -1,6 +1,6 @@
 import '../styles/Deck.css';
 
-const Deck = ({ deck, onClick }) => {
+const Deck = ({ deck, onClick, tagColor }) => {
     return (
         <div className="deck" onClick={onClick}>
             <div className="deck-box">

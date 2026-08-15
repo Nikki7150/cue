@@ -49,3 +49,22 @@
 .deck-item:hover .deck-menu-button {
     display: block;
 }
+
+.tags {
+    padding: 0;
+}
+
+.tag-item {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.tag-swatch {
+    width: 20px;
+    height: 20px;
+}
+
+.tag-name {
+    margin: 0;
+}

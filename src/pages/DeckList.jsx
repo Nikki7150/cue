@@ -108,7 +108,7 @@ const DeckList = () => {
     const handleSelectTag = async (deckId, tagId) => {
         try {
             await updateDeckTag(deckId, tagId);
-            setTags((prev) => 
+            setDecks((prev) => 
                 prev.map((d) => (d.id === deckId ? {...d, tagId: tagId } :d))
             );
             setOpenTagId(null);
@@ -138,51 +138,53 @@ const DeckList = () => {
             <h1 className="deck-list-title">Deck List</h1>
             {loading && <LoadingSpinner />}
             <ul className="deck-list">
-                {decks.map((deck) => (
-                    <div className="deck-item" key={deck.id}>
-                        <Deck deck={deck} onClick={() => navigate('/review/' + deck.id)} />
-                        <button
-                            className="deck-menu-button"
-                            onClick={(e) => handleMenuClick(e, deck.id)}
-                        >
-                            <BsThreeDotsVertical size={20} />
-                        </button>
-                        {openMenuId === deck.id && (
-                            <div className="menu-popover">
-                                <p className="menu-item" onClick={(e) => handleEditClick(e, deck.id)}>Edit Name</p>
-                                {openEditId === deck.id && (
-                                    <div className="edit-name-box">
-                                        <input className="input-edit-title" type="text" placeholder={deck.title} value={newTitle} onChange={(e) => setNewTitle(e.target.value)} />
-                                        <button className="edit-name-done" onClick={() => handleUpdateTitle(deck.id, newTitle)}><IoIosCheckmark size={15}/></button>
-                                    </div>
-                                )}
-                                <p className="menu-item" onClick={(e) => handleTagClick(e, deck.id)}>Tag</p>
-                                {openTagId === deck.id && (
-                                    <div className="tag-box">
-                                        <button className="add-tag" onClick={() => setIsCreatingTag(true)}>+ Add tag</button>
-                                        {isCreatingTag && (
-                                            <div className="new-tag-form">
-                                                <input type="text" placeholder="Tag Name" value={newTagName} onChange={(e) => setNewTagName(e.target.value)} />
-                                                <input type="color" value={newTagColor} onChange={(e) => setNewTagColor(e.target.value)} />
-                                                <button className="tag-create-submit" onClick={handleCreateTag(deck.id)}>Confirm</button>
-                                            </div>
-                                        )}
-                                        <ul className="tags">
-                                            {tags.map((tag) => (
-                                                <div className="tag-item" key={tag.id} onClick={() => handleSelectTag(deck.id, tag.id)}>
-                                                    <p className="tag-name">{tag.name}</p>
-                                                    {/*<input type="color" value={tag.color} onChange={}/>*/}
-                                                    <div style={{ backgroundColor: tag.color }} className="tag-swatch" />
+                {decks.map((deck) => {
+                    const tag = tags.find((t) => t.id === deck.tagId);
+                    return (
+                        <div className="deck-item" key={deck.id}>
+                            <Deck deck={deck} onClick={() => navigate('/review/' + deck.id)} tagColor={tag ? tag.color : undefined} />
+                            <button
+                                className="deck-menu-button"
+                                onClick={(e) => handleMenuClick(e, deck.id)}
+                            >
+                                <BsThreeDotsVertical size={20} />
+                            </button>
+                            {openMenuId === deck.id && (
+                                <div className="menu-popover">
+                                    <p className="menu-item" onClick={(e) => handleEditClick(e, deck.id)}>Edit Name</p>
+                                    {openEditId === deck.id && (
+                                        <div className="edit-name-box">
+                                            <input className="input-edit-title" type="text" placeholder={deck.title} value={newTitle} onChange={(e) => setNewTitle(e.target.value)} />
+                                            <button className="edit-name-done" onClick={() => handleUpdateTitle(deck.id, newTitle)}><IoIosCheckmark size={15}/></button>
+                                        </div>
+                                    )}
+                                    <p className="menu-item" onClick={(e) => handleTagClick(e, deck.id)}>Tag</p>
+                                    {openTagId === deck.id && (
+                                        <div className="tag-box">
+                                            <button className="add-tag" onClick={() => setIsCreatingTag(true)}>+ Add tag</button>
+                                            {isCreatingTag && (
+                                                <div className="new-tag-form">
+                                                    <input type="text" placeholder="Tag Name" value={newTagName} onChange={(e) => setNewTagName(e.target.value)} />
+                                                    <input type="color" value={newTagColor} onChange={(e) => setNewTagColor(e.target.value)} />
+                                                    <button className="tag-create-submit" onClick={() => handleCreateTag(deck.id)}>Confirm</button>
                                                 </div>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                )}
-                                <p className="menu-item" onClick={() => handleDeleteDeck(deck.id)}>Delete</p>
-                            </div>
-                        )}
-                    </div>
-                ))}
+                                            )}
+                                            <ul className="tags">
+                                                {tags.map((tag) => (
+                                                    <div className="tag-item" key={tag.id} onClick={() => handleSelectTag(deck.id, tag.id)}>
+                                                        <div style={{ backgroundColor: tag.color }} className="tag-swatch" />
+                                                        <p className="tag-name">{tag.name}</p>
+                                                    </div>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
+                                    <p className="menu-item" onClick={() => handleDeleteDeck(deck.id)}>Delete</p>
+                                </div>
+                            )}
+                        </div>
+                    );
+                })}
             </ul>
         </div>
     );
