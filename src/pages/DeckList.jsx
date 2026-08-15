@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
-import { fetchDecks, updateTitle } from '../lib/decks';
+import { fetchDecks, updateTitle, deleteDeck } from '../lib/decks';
 import LoadingSpinner from '../components/LoadingSpinner';
 import Deck from '../components/Deck';
 import { BsThreeDotsVertical } from "react-icons/bs";
@@ -73,6 +73,23 @@ const DeckList = () => {
         }
     };
 
+    const handleDeleteDeck = async (deckId) => {
+        const confirmed = window.confirm("Are you sure you want to delete this deck? This action is permanent.");
+        if (confirmed) {
+            try {
+                await deleteDeck(deckId);
+                setDecks((prev) => prev.filter((d) => d.id !== deckId));
+                setOpenMenuId(null);
+            } catch (error) {
+                console.error('Failed to delete deck: ', error);
+                setError(error);
+            }
+        } else {
+            console.log("Action Cancelled");
+            return;
+        }
+    };
+
     return (
         <div className="deck-list-container">
             <h1 className="deck-list-title">Deck List</h1>
@@ -97,7 +114,7 @@ const DeckList = () => {
                                     </div>
                                 )}
                                 <p className="menu-item">Tag</p>
-                                <p className="menu-item">Delete</p>
+                                <p className="menu-item" onClick={handleDeleteDeck}>Delete</p>
                             </div>
                         )}
                     </div>
