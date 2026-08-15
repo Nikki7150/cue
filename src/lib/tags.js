@@ -8,7 +8,7 @@ import {
     serverTimestamp
 } from 'firebase/firestore';
 
-export const createTag = async (useRevalidator, name, color) => {
+export const createTag = async (userId, name, color) => {
     const tagsRef = collection(db, "tags");
     const data = {
         userId, 

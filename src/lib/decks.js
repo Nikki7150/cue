@@ -74,3 +74,13 @@ export const deleteDeck = async (deckId) => {
         throw error;
     }
 };
+
+export const updateDeckTag = async (deckId, tagId) => {
+    const docRef = doc(db, "decks", deckId);
+    try {
+        await updateDoc(docRef, {tagId});
+    } catch (error) {
+        console.error("updateDeckTag failed:", error);
+        throw error;
+    }
+};

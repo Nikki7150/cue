@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
-import { fetchDecks, updateTitle, deleteDeck } from '../lib/decks';
+import { fetchDecks, updateTitle, deleteDeck, updateDeckTag } from '../lib/decks';
 import LoadingSpinner from '../components/LoadingSpinner';
 import Deck from '../components/Deck';
 import { BsThreeDotsVertical } from "react-icons/bs";
@@ -11,11 +11,15 @@ import { createTag, fetchTags } from '../lib/tags';
 
 const DeckList = () => {
     const [decks, setDecks] = useState([]);
+    const [tags, setTags] = useState([]);
     const navigate = useNavigate();
     const { user } = useAuth();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [newTitle, setNewTitle] = useState('');
+    const [isCreatingTag, setIsCreatingTag] = useState(false);
+    const [newTagName, setNewTagName] = useState('');
+    const [newTagColor, setNewTagColor] = useState('#7C9F81')
 
     useEffect(() => {
         setLoading(true);
@@ -23,8 +27,10 @@ const DeckList = () => {
             setLoading(false);
             return;
         }
-        fetchDecks(user.uid).then((decks) => {
+        Promise.all([fetchDecks(user.uid), fetchTags(user.uid)])
+        .then(([decks, tags]) => {
             setDecks(decks);
+            setTags(tags);
             setLoading(false);
         }).catch((error) => {
             setError(error);
@@ -66,7 +72,7 @@ const DeckList = () => {
         return () => {
             document.removeEventListener('click', handleClickOutside);
         };
-    }, [openMenuId, openEditId]);
+    }, [openMenuId, openEditId, openTagId]);
 
     const handleUpdateTitle = async (deckId, newTitle) => {
         try {
@@ -99,6 +105,34 @@ const DeckList = () => {
         }
     };
 
+    const handleSelectTag = async (deckId, tagId) => {
+        try {
+            await updateDeckTag(deckId, tagId);
+            setTags((prev) => 
+                prev.map((d) => (d.id === deckId ? {...d, tagId: tagId } :d))
+            );
+            setOpenTagId(null);
+            setOpenMenuId(null);
+        } catch (error) {
+            console.error('Failed to update tag: ', error);
+            setError(error);
+        }
+    }
+
+    const handleCreateTag = async (deckId) => {
+        try {
+            const tagId = await createTag(user.uid, newTagName, newTagColor);
+            setTags([...tags, { id: tagId, name: newTagName, color: newTagColor, userId: user.uid }]);
+            handleSelectTag(deckId, tagId);
+            setIsCreatingTag(false);
+            setNewTagColor('#7C9F8182');
+            setNewTagName('');
+        } catch (error) {
+            console.error('Failed to create tag: ', error);
+            setError(error);
+        }
+    };
+
     return (
         <div className="deck-list-container">
             <h1 className="deck-list-title">Deck List</h1>
@@ -125,13 +159,26 @@ const DeckList = () => {
                                 <p className="menu-item" onClick={(e) => handleTagClick(e, deck.id)}>Tag</p>
                                 {openTagId === deck.id && (
                                     <div className="tag-box">
-                                        <button className="add-tag">+ Add tag</button>
+                                        <button className="add-tag" onClick={() => setIsCreatingTag(true)}>+ Add tag</button>
+                                        {isCreatingTag && (
+                                            <div className="new-tag-form">
+                                                <input type="text" placeholder="Tag Name" value={newTagName} onChange={(e) => setNewTagName(e.target.value)} />
+                                                <input type="color" value={newTagColor} onChange={(e) => setNewTagColor(e.target.value)} />
+                                                <button className="tag-create-submit" onClick={handleCreateTag(deck.id)}>Confirm</button>
+                                            </div>
+                                        )}
                                         <ul className="tags">
-                                            <li className="tag">name</li>
+                                            {tags.map((tag) => (
+                                                <div className="tag-item" key={tag.id} onClick={() => handleSelectTag(deck.id, tag.id)}>
+                                                    <p className="tag-name">{tag.name}</p>
+                                                    {/*<input type="color" value={tag.color} onChange={}/>*/}
+                                                    <div style={{ backgroundColor: tag.color }} className="tag-swatch" />
+                                                </div>
+                                            ))}
                                         </ul>
                                     </div>
                                 )}
-                                <p className="menu-item" onClick={handleDeleteDeck}>Delete</p>
+                                <p className="menu-item" onClick={() => handleDeleteDeck(deck.id)}>Delete</p>
                             </div>
                         )}
                     </div>
