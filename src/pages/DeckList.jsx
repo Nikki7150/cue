@@ -7,6 +7,7 @@ import Deck from '../components/Deck';
 import { BsThreeDotsVertical } from "react-icons/bs";
 import '../styles/DeckList.css';
 import { IoIosCheckmark } from "react-icons/io";
+import { createTag, fetchTags } from '../lib/tags';
 
 const DeckList = () => {
     const [decks, setDecks] = useState([]);
@@ -32,7 +33,6 @@ const DeckList = () => {
     }, [user.uid]);
 
     const [openMenuId, setOpenMenuId] = useState(null);
-
     const handleMenuClick = (e, deckId) => {
         e.stopPropagation();
         setOpenMenuId((prev) => (prev === deckId ? null : deckId));
@@ -44,11 +44,20 @@ const DeckList = () => {
         setOpenEditId((prev) => (prev === deckId ? null: deckId));
     };
 
+    const [openTagId, setOpenTagId] = useState(null);
+    const handleTagClick = async (e, deckId) => {
+        e.stopPropagation();
+        setOpenTagId((prev) => (prev === deckId ? null: deckId));
+    };
+
     useEffect(() => {
         const handleClickOutside = (e) => {
             if (openMenuId && !e.target.closest('.deck-item')) {
                 if (openEditId && !e.target.closest('.deck-item')){
                     setOpenEditId(null);
+                }
+                if (openTagId && !e.target.closest('.deck-item')){
+                    setOpenTagId(null);
                 }
                 setOpenMenuId(null);
             }
@@ -113,7 +122,15 @@ const DeckList = () => {
                                         <button className="edit-name-done" onClick={() => handleUpdateTitle(deck.id, newTitle)}><IoIosCheckmark size={15}/></button>
                                     </div>
                                 )}
-                                <p className="menu-item">Tag</p>
+                                <p className="menu-item" onClick={(e) => handleTagClick(e, deck.id)}>Tag</p>
+                                {openTagId === deck.id && (
+                                    <div className="tag-box">
+                                        <button className="add-tag">+ Add tag</button>
+                                        <ul className="tags">
+                                            <li className="tag">name</li>
+                                        </ul>
+                                    </div>
+                                )}
                                 <p className="menu-item" onClick={handleDeleteDeck}>Delete</p>
                             </div>
                         )}
