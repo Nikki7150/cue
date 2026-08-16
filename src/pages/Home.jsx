@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
+import '../styles/Home.css';
 
 const Home = () => {
     const navigate = useNavigate();

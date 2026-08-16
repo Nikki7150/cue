@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { fetchDeck } from '../lib/decks';
+import { fetchDeck, updateDeckProgress } from '../lib/decks';
 import LoadingSpinner from '../components/LoadingSpinner';
 import Flashcard from '../components/Flashcard';
 import '../styles/Review.css';
-import { MdArrowBack, MdNavigateNext } from "react-icons/md";
+import { MdArrowBack, MdNavigateNext, MdClear } from "react-icons/md";
 import { IoMdRefresh } from "react-icons/io";
 import { PiShuffle } from "react-icons/pi";
+
 
 const Review = () => {
     const { deckId } = useParams();
@@ -41,6 +42,7 @@ const Review = () => {
             setCardIndex(cardIndex + 1);
         } else {
             setIsDeckDone(true);
+            saveProgress();
         }
     };
 
@@ -65,6 +67,15 @@ const Review = () => {
         setCards(newCards);
     };
 
+    const saveProgress = async () => {
+        const percent = Math.round(((cardIndex + 1) / cards.length) * 100);
+        try {
+            await updateDeckProgress(deckId, percent);
+        } catch (error) {
+            console.error('Failed to save progress: ', error);
+        }
+    } 
+
     return (
         <div className="review-container">
             <div className="review-header">
@@ -75,9 +86,14 @@ const Review = () => {
                     <h1 className="review-title">Review</h1>
                 </div>
                 <p className="deck-title">{deck?.title}</p>
-                <button className="shuffle-button" onClick={handleShuffle} style={{display: deck ? 'block' : 'none',}}>
-                    <PiShuffle size={26} />
-                </button>
+                <div className="review-header-buttons">
+                    <button className="shuffle-button" onClick={handleShuffle} style={{display: deck ? 'block' : 'none',}}>
+                        <PiShuffle size={26} />
+                    </button>
+                    <button className="close-button" onClick={async () => {await saveProgress(); navigate('/decks');}} style={{display: deck ? 'block' : 'none',}}>
+                        <MdClear size={26} />
+                    </button>
+                </div>
             </div>
             {!deckId &&
                 <p className="review-text">go to Decks and pick a deck to review.</p>
