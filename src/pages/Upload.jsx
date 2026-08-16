@@ -1,8 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { generateCards } from '../lib/generateCards';
 import { useNavigate } from 'react-router-dom';
 import { saveDeck } from '../lib/decks';
 import { useAuth } from '../AuthContext';
+import { extractPdfText } from '../lib/extractPdfText';
+import '../styles/Upload.css';
+import { MdClear } from "react-icons/md";
 
 const Upload = () => {
     const [text, setText] = useState('');
@@ -11,6 +14,7 @@ const Upload = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const { user } = useAuth();
+    const fileInputRef = useRef(null);
 
     const handleGenerate = async () => {
         setLoading(true);
@@ -34,29 +38,55 @@ const Upload = () => {
         }
     };
 
-    const handleFileChange = (e) => {
+    const handleFileChange = async (e) => {
         const file = e.target.files[0];
         if (file) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const text = e.target.result;
-                setText(text);
-            };
-            reader.readAsText(file);
+            if (file.name.endsWith('.pdf')) {
+                try {
+                    const fileText = await extractPdfText(file);
+                    setText(fileText);
+                } catch (error) {
+                    console.error('Pdf to Text convert failed: ', error);
+                    setError('Failed to extract text from the PDF.');
+                }
+            } else {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const text = e.target.result;
+                    setText(text);
+                };
+                reader.readAsText(file);
+            }
+        }
+    };
+
+    const handleClearFiles = () => {
+        setText('');
+        setError(null);
+        if (fileInputRef.current) {
+            fileInputRef.current.value = '';
         }
     };
 
     return (
-        <div>
-            <h1>Upload</h1>
-            <h2>Create a deck</h2>
-            <textarea placeholder="Enter your text here..." value={text} onChange={(e) => setText(e.target.value)} />
-            <input type="file" accept=".txt" onChange={handleFileChange} />
-            <button onClick={handleGenerate} disabled={loading}>
+        <div className="upload-container">
+            <div className="upload-header">
+                <h1 className="upload-title">Upload</h1>
+                <button className="clear-files" onClick={handleClearFiles} style={{display: text ? 'block' : 'none',}}><MdClear size={24} /></button>
+            </div>
+            <div className="upload-options">
+                <textarea className="upload-text" placeholder="Enter your text here or..." value={text} onChange={(e) => setText(e.target.value)} />
+                <div className="upload-box" onClick={() => document.querySelector('.upload-input').click()}>
+                    <label htmlFor="image-file">+</label>
+                    <h3>Click to upload a .txt or .pdf file</h3>
+                </div>
+                <input ref={fileInputRef} className="upload-input" type="file" accept=".txt, .pdf" onChange={handleFileChange} />
+            </div>
+            <button className="upload-button" onClick={handleGenerate} disabled={loading}>
                 {loading ? 'Generating...' : 'Generate Flashcards'}
             </button>
-            {loading && <p>Generating flashcards...</p>}
-            {error && <p style={{ color: 'red' }}>{error}</p>}
+            {loading && <p className="loading">Generating flashcards...</p>}
+            {error && <p className="error" style={{ color: 'red' }}>{error}</p>}
         </div>
     );
 };

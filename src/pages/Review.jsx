@@ -75,7 +75,7 @@ const Review = () => {
                     <h1 className="review-title">Review</h1>
                 </div>
                 <p className="deck-title">{deck?.title}</p>
-                <button className="shuffle-button" onClick={handleShuffle}>
+                <button className="shuffle-button" onClick={handleShuffle} style={{display: deck ? 'block' : 'none',}}>
                     <PiShuffle size={26} />
                 </button>
             </div>
