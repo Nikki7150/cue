@@ -7,7 +7,7 @@ const Deck = ({ deck, onClick, tagColor }) => {
                 <div className="deck-cards"></div>
             </div>
             <div className="deck-lid">
-                <h3 className="deck-name">{deck.title}</h3>
+                <h3 className="deck-name" style={{backgroundColor: tagColor,}}>{deck.title}</h3>
             </div>
         </div>
     );

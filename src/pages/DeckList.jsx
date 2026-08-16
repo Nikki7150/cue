@@ -155,17 +155,19 @@ const DeckList = () => {
                                     {openEditId === deck.id && (
                                         <div className="edit-name-box">
                                             <input className="input-edit-title" type="text" placeholder={deck.title} value={newTitle} onChange={(e) => setNewTitle(e.target.value)} />
-                                            <button className="edit-name-done" onClick={() => handleUpdateTitle(deck.id, newTitle)}><IoIosCheckmark size={15}/></button>
+                                            <button className="edit-name-done" onClick={() => handleUpdateTitle(deck.id, newTitle)}><IoIosCheckmark size={24}/></button>
                                         </div>
                                     )}
                                     <p className="menu-item" onClick={(e) => handleTagClick(e, deck.id)}>Tag</p>
                                     {openTagId === deck.id && (
                                         <div className="tag-box">
-                                            <button className="add-tag" onClick={() => setIsCreatingTag(true)}>+ Add tag</button>
+                                            <button className="add-tag" onClick={() => setIsCreatingTag(!isCreatingTag)}>+ Add tag</button>
                                             {isCreatingTag && (
                                                 <div className="new-tag-form">
-                                                    <input type="text" placeholder="Tag Name" value={newTagName} onChange={(e) => setNewTagName(e.target.value)} />
-                                                    <input type="color" value={newTagColor} onChange={(e) => setNewTagColor(e.target.value)} />
+                                                    <div className="tag-inputs">
+                                                        <input type="color" className="color-input" value={newTagColor} onChange={(e) => setNewTagColor(e.target.value)} />
+                                                        <input type="text" className="name-input" placeholder="Tag Name" value={newTagName} onChange={(e) => setNewTagName(e.target.value)} />
+                                                    </div>
                                                     <button className="tag-create-submit" onClick={() => handleCreateTag(deck.id)}>Confirm</button>
                                                 </div>
                                             )}
