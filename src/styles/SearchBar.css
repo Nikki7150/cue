@@ -1,0 +1,33 @@
+.search-bar-container {
+    width: 98%;
+}
+
+.search-bar {
+    padding: 10px;
+    background: #e4ded4;
+    border: 2px solid #cec6b8;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items: center;
+}
+
+.search-input {
+    width: 100%;
+    background: none;
+    border: none;
+    font-size: 1em;
+}
+
+.search-input:focus {
+    outline: none;
+}
+
+.clear-button {
+    padding: 0;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 1.5em;
+}
