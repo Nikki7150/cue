@@ -7,12 +7,15 @@ import '../styles/Review.css';
 import { MdArrowBack, MdNavigateNext, MdClear } from "react-icons/md";
 import { IoMdRefresh } from "react-icons/io";
 import { PiShuffle } from "react-icons/pi";
+import ProgressBar from '../components/ProgressBar';
+import { useAuth } from '../AuthContext';
+import { fetchTags } from '../lib/tags';
 
 
 const Review = () => {
     const { deckId } = useParams();
     const navigate = useNavigate();
-
+    const { user } = useAuth();
     const [deck, setDeck] = useState(null);
     const [loading, setLoading] = useState(true);
     const [cardIndex, setCardIndex] = useState(0);
@@ -20,21 +23,24 @@ const Review = () => {
     const [error, setError] = useState(null);
     const [isDeckDone, setIsDeckDone] = useState(false);
     const [cards, setCards] = useState([]);
+    const [tags, setTags] = useState([]);
 
     useEffect(() => {
         if (!deckId) {
             setLoading(false);
             return;
         }
-        fetchDeck(deckId).then((result) => {
-            setDeck(result);
-            setCards(result.cards);
+        Promise.all([fetchDeck(deckId), fetchTags(user.uid)])
+        .then(([deckResult, tagsResult]) => {
+            setDeck(deckResult);
+            setCards(deckResult.cards);
+            setTags(tagsResult);
             setLoading(false);
         }).catch((error) => {
             setError(error);
             setLoading(false);
         });
-    }, [deckId]);
+    }, [user.uid, deckId]);
 
     const handleNext = () => {
         setIsAnswer(false);
@@ -75,6 +81,8 @@ const Review = () => {
             console.error('Failed to save progress: ', error);
         }
     } 
+
+    const tag = tags.find((t) => t.id === deck?.tagId);
 
     return (
         <div className="review-container">
@@ -124,6 +132,7 @@ const Review = () => {
                             <MdNavigateNext size={26} />
                         </button>
                     </div>
+                    <ProgressBar percent={Math.round(((cardIndex + 1) / cards.length) * 100)} color={tag ? tag.color : undefined}/>
                 </div>
             )}
         </div>

@@ -8,6 +8,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import '../styles/DeckList.css';
 import { IoIosCheckmark } from "react-icons/io";
 import { createTag, fetchTags } from '../lib/tags';
+import ProgressBar from '../components/ProgressBar';
 
 const DeckList = () => {
     const [decks, setDecks] = useState([]);
@@ -143,6 +144,7 @@ const DeckList = () => {
                     return (
                         <div className="deck-item" key={deck.id}>
                             <Deck deck={deck} onClick={() => navigate('/review/' + deck.id)} tagColor={tag ? tag.color : undefined} />
+                            <ProgressBar percent={deck.percent || 0} color={tag ? tag.color : undefined}/>
                             <button
                                 className="deck-menu-button"
                                 onClick={(e) => handleMenuClick(e, deck.id)}
