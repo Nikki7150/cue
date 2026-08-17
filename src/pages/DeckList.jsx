@@ -9,6 +9,7 @@ import '../styles/DeckList.css';
 import { IoIosCheckmark } from "react-icons/io";
 import { createTag, fetchTags } from '../lib/tags';
 import ProgressBar from '../components/ProgressBar';
+import SearchBar from '../components/SearchBar';
 
 const DeckList = () => {
     const [decks, setDecks] = useState([]);
@@ -21,6 +22,7 @@ const DeckList = () => {
     const [isCreatingTag, setIsCreatingTag] = useState(false);
     const [newTagName, setNewTagName] = useState('');
     const [newTagColor, setNewTagColor] = useState('#7C9F81')
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
         setLoading(true);
@@ -134,12 +136,23 @@ const DeckList = () => {
         }
     };
 
+    const filteredDecks = decks.filter((deck) => {
+        const query = searchQuery.toLowerCase();
+        const result = deck.title.toLowerCase().includes(query) ||
+            deck.cards.some((card) => 
+                card.question.toLowerCase().includes(query) ||
+                card.answer.toLowerCase().includes(query)
+            );
+        return result;
+    });
+
     return (
         <div className="deck-list-container">
             <h1 className="deck-list-title">Deck List</h1>
+            <SearchBar value={searchQuery} onChange={setSearchQuery} />
             {loading && <LoadingSpinner />}
             <ul className="deck-list">
-                {decks.map((deck) => {
+                {filteredDecks.map((deck) => {
                     const tag = tags.find((t) => t.id === deck.tagId);
                     return (
                         <div className="deck-item" key={deck.id}>
@@ -190,6 +203,9 @@ const DeckList = () => {
                     );
                 })}
             </ul>
+            {searchQuery && filteredDecks.length === 0 && (
+                <p className="no-results">No Decks or cards match "{searchQuery}".</p>
+            )}
         </div>
     );
 };

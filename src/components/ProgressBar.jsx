@@ -6,7 +6,7 @@ const ProgressBar = ({ percent, color }) => {
             <div className="progress-bar-container">
                 <div className="progress-bar-fill" style={{ width: `${percent}%`, backgroundColor: color }}></div>
             </div>
-            <span className="progress =-bar-label">{percent}%</span>
+            <span className="progress-bar-label">{percent}%</span>
         </div>
     )
 }
