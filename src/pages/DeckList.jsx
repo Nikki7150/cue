@@ -156,7 +156,7 @@ const DeckList = () => {
                     const tag = tags.find((t) => t.id === deck.tagId);
                     return (
                         <div className="deck-item" key={deck.id}>
-                            <Deck deck={deck} onClick={() => navigate('/review/' + deck.id)} tagColor={tag ? tag.color : undefined} />
+                            <Deck deck={deck} onClick={() => navigate('/review/' + deck.id)} tagColor={tag ? tag.color : undefined} searchQuery={searchQuery} />
                             <ProgressBar percent={deck.percent || 0} color={tag ? tag.color : undefined}/>
                             <button
                                 className="deck-menu-button"
