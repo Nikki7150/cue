@@ -16,11 +16,12 @@ const Home = () => {
     return (
         <div className="home-container">
             <div className="home-header">
-                <h1>{getGreeting()}, {user ? user?.displayName : 'Guest'}!</h1>
-                <p>Ready to cue your brain?</p>
+                <h1 className="home-greeting">{getGreeting()}, {user ? user?.displayName : 'Guest'}!</h1>
+                <p className="home-subtitle">Ready to cue your brain?</p>
             </div>
-            <button onClick={() => navigate('/login')} style={{ display: user ? 'none' : 'block' }}>Login</button>
-            <button className="logout-button" style={{ display: user ? 'block' : 'none' }} onClick={logout}>Logout</button>
+            {/*
+            <button onClick={() => navigate('/login')} style={{ display: user ? 'none' : 'block' }} className='login-button'>Login</button>
+            <button className="logout-button" style={{ display: user ? 'block' : 'none' }} onClick={logout}>Logout</button>*/}
         </div>
     );
 };

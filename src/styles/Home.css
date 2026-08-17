@@ -1,0 +1,22 @@
+.home-container {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.home-header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.home-greeting {
+    margin: 0;
+    font-family: 'Emilys Candy', cursive;
+}
+
+.home-subtitle {
+    margin: 0;
+    font-family: 'Unkempt', cursive;
+    font-size: 1.2em;
+}
