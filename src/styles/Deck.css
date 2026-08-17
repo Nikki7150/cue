@@ -52,11 +52,9 @@
     font-family: 'Unkempt', cursive;
     background: #7C9F8182;
     width: 80%;
-    height: 90%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
     mask: radial-gradient(5px at 50% 5px,#0000 calc(100% - 1px),#000) 50% -5px/9.25px 100%,
     radial-gradient(5px at 5px 50%,#0000 calc(100% - 1px),#000) -5px/100% 9.25px;
     mask-composite: intersect;
+    padding: 10% 5%;
 }
