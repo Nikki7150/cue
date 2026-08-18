@@ -1,6 +1,6 @@
 .deck {
     position: relative;
-    width: 320px;
+    width: 300px;
     aspect-ratio: 5 / 3;
     height: auto;
     cursor: pointer;

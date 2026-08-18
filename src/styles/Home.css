@@ -3,7 +3,7 @@
     padding-left: 20px;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 20px;
 }
 
 .home-header {
@@ -39,18 +39,22 @@
     margin: 0;
     padding: 0;
     flex-direction: column;
-    gap: 30px;
+    gap: 20px;
 }
 
 .home-stats {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    gap: 30px;
 }
 
-.decks-stats, .cards-stats {
+.decks-stats, .cards-stats, .progress-stats {
     padding: 10px;
     border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    align-items: center;
     width: 300px;
 }
 
@@ -62,4 +66,62 @@
 .cards-stats {
     background: rgba(131, 175, 140, 0.454);
     border: 2px solid rgb(131, 175, 140);
+}
+
+.progress-stats {
+    background: rgba(131, 175, 140, 0.454);
+    border: 2px solid rgb(131, 175, 140);
+}
+
+.home-decks-heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.see-all {
+    margin: 0;
+    cursor: pointer;
+}
+
+.see-all:hover {
+    color: pink;
+}
+
+.home-decks {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.decks {
+    justify-content: center;
+    background: #d6cfc3b8;
+    width: 300px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #d6cfc3b8;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.deck-cards-length {
+    width: fit-content;
+    margin-left: 10px;
+}
+
+.info {
+    font-size: 1em;
+}
+
+.info-click {
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.info-click:hover {
+    color: pink;
+}
+
+.add-decks {
+    margin: 0;
 }
