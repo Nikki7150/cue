@@ -69,8 +69,19 @@
 }
 
 .progress-stats {
-    background: rgba(131, 175, 140, 0.454);
-    border: 2px solid rgb(131, 175, 140);
+    background: rgba(131, 159, 175, 0.454);
+    border: 2px solid rgb(131, 159, 175);
+}
+
+.stats-heading {
+    font-family: 'Schoolbell', cursive;
+    margin: 10px 0;
+}
+
+.stats-number {
+    font-family: 'Schoolbell', cursive;
+    font-size: 1.5em;
+    margin: 10px 0;
 }
 
 .home-decks-heading {
@@ -79,13 +90,35 @@
     justify-content: space-between;
 }
 
+.home-subtitle-1 {
+    margin: 0;
+    font-family: 'Unkempt', cursive;
+    font-size: 1.5em;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
 .see-all {
     margin: 0;
     cursor: pointer;
+    padding: 5px;
+    font-family: 'Schoolbell', cursive;
+    font-size: 1.2em;
 }
 
 .see-all:hover {
     color: pink;
+}
+
+.add-decks {
+    margin: 0;
+    padding: 5px 10px;
+    background-color: aliceblue;
+    border-radius: 5px;
 }
 
 .home-decks {
@@ -102,6 +135,7 @@
     border-radius: 10px;
     border: 2px solid #d6cfc3b8;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    font-family: 'Schoolbell', cursive;
 }
 
 .deck-cards-length {
@@ -122,6 +156,9 @@
     color: pink;
 }
 
-.add-decks {
-    margin: 0;
+.stats-icons {
+    padding: 20px;
+    background-color: antiquewhite;
+    border-radius: 50%;
+    margin-left: 10px;
 }

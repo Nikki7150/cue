@@ -1,5 +1,6 @@
 .search-bar-container {
     width: 98%;
+    cursor: text;
 }
 
 .search-bar {

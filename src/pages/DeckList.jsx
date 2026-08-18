@@ -155,11 +155,13 @@ const DeckList = () => {
 
     return (
         <div className="deck-list-container">
-            <h1 className="deck-list-title">Deck List</h1>
+            <div className='deck-list-header'>
+                <h1 className="deck-list-title">Deck List</h1>
+                <button onClick={() => setSortOrder(sortOrder === 'newest' ? 'oldest' : 'newest')} className='deck-list-filter'>
+                    {sortOrder === 'newest' ? 'Newest to Oldest' : 'Oldest to Newest'}
+                </button>
+            </div>
             <SearchBar value={searchQuery} onChange={setSearchQuery} />
-            <button onClick={() => setSortOrder(sortOrder === 'newest' ? 'oldest' : 'newest')}>
-                {sortOrder === 'newest' ? 'Newest to Oldest' : 'Oldest to Newest'}
-            </button>
             {loading && <LoadingSpinner />}
             <ul className="deck-list">
                 {sortedDecks.map((deck) => {

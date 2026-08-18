@@ -8,7 +8,8 @@ import { fetchTags } from '../lib/tags';
 import ProgressBar from '../components/ProgressBar';
 import { useState, useEffect } from 'react';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { PiCardsThree } from "react-icons/pi";
+import { PiCardsThree, PiCards } from "react-icons/pi";
+import { TbProgress } from "react-icons/tb";
 
 const Home = () => {
     const navigate = useNavigate();
@@ -70,29 +71,29 @@ const Home = () => {
             <div className="home-content">
                 <div className="home-stats">
                     <div className="decks-stats">
-                        <PiCardsThree size={40} />
+                        <PiCardsThree size={40} className="stats-icons" />
                         <div className="division">
-                            <h1>Decks</h1>
-                            <p>{totalDecks}</p>
+                            <h1 className="stats-heading">Decks</h1>
+                            <p className="stats-number">{totalDecks}</p>
                         </div>
                     </div>
                     <div className="cards-stats">
-                        <PiCardsThree size={40} />
+                        <PiCards size={40} className="stats-icons" />
                         <div className="division">
-                            <h1>Cards</h1>
-                            <p>{totalCards}</p>
+                            <h1 className="stats-heading">Cards</h1>
+                            <p className="stats-number">{totalCards}</p>
                         </div>
                     </div>
                     <div className="progress-stats">
-                        <PiCardsThree size={40} />
+                        <TbProgress size={40} className="stats-icons" />
                         <div className="division">
-                            <h1>Progress</h1>
-                            <p>{avgProgress}%</p>
+                            <h1 className="stats-heading">Progress</h1>
+                            <p className="stats-number">{avgProgress}%</p>
                         </div>
                     </div>
                 </div>
                 <div className="home-decks-heading">
-                    <p className="home-subtitle">Continue Learning</p>
+                    <p className="home-subtitle-1">Continue Learning</p>
                 </div>
                 <div className="home-continue">
                     {inProgressDecks.length > 0 && (
@@ -115,9 +116,11 @@ const Home = () => {
                     )}
                 </div>
                 <div className="home-decks-heading">
-                    <p className="home-subtitle">Your Decks</p>
-                    <p className="add-decks" onClick={() => navigate('/upload')}>+</p>
-                    <p className='see-all' onClick={() => navigate('/decks')}>See all</p>
+                    <p className="home-subtitle-1">Your Decks</p>
+                    <div className="hero-buttons">
+                        <p className="add-decks" onClick={() => navigate('/upload')}>+</p>
+                        <p className='see-all' onClick={() => navigate('/decks')}>See all</p>
+                    </div>
                 </div>
                 <div className="home-decks">
                     {sortedDecks.slice(0, 4).map((deck) => {

@@ -2,11 +2,32 @@
     margin: 0;
     padding-left: 20px;
 }
+
+.deck-list-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .deck-list-title {
     font-size: 2rem;
     font-weight: bold;
     color: #333;
     font-family: 'Emilys Candy', cursive;
+}
+
+.deck-list-filter {
+    background: #ababab97;
+    border: none;
+    padding: 10px;
+    height: fit-content;
+    border-radius: 10px;
+    align-self: center;
+    cursor: pointer;
+}
+
+.deck-list-filter:hover {
+    background: #abababd8;
 }
 
 .deck-list {
