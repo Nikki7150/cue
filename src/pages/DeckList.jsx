@@ -23,6 +23,23 @@ const DeckList = () => {
     const [newTagName, setNewTagName] = useState('');
     const [newTagColor, setNewTagColor] = useState('#7C9F81')
     const [searchQuery, setSearchQuery] = useState('');
+    const [sortOrder, setSortOrder] = useState('newest');
+
+    const filteredDecks = decks.filter((deck) => {
+        const query = searchQuery.toLowerCase();
+        const result = deck.title.toLowerCase().includes(query) ||
+            deck.cards.some((card) => 
+                card.question.toLowerCase().includes(query) ||
+                card.answer.toLowerCase().includes(query)
+            );
+        return result;
+    });
+
+    const sortedDecks = [...filteredDecks].sort((a, b) => {
+        const aTime = a.createdAt?.toMillis() || 0;
+        const bTime = b.createdAt?.toMillis() || 0;
+        return sortOrder === 'newest' ? bTime - aTime : aTime - bTime;
+    });
 
     useEffect(() => {
         setLoading(true);
@@ -136,23 +153,16 @@ const DeckList = () => {
         }
     };
 
-    const filteredDecks = decks.filter((deck) => {
-        const query = searchQuery.toLowerCase();
-        const result = deck.title.toLowerCase().includes(query) ||
-            deck.cards.some((card) => 
-                card.question.toLowerCase().includes(query) ||
-                card.answer.toLowerCase().includes(query)
-            );
-        return result;
-    });
-
     return (
         <div className="deck-list-container">
             <h1 className="deck-list-title">Deck List</h1>
             <SearchBar value={searchQuery} onChange={setSearchQuery} />
+            <button onClick={() => setSortOrder(sortOrder === 'newest' ? 'oldest' : 'newest')}>
+                {sortOrder === 'newest' ? 'Newest to Oldest' : 'Oldest to Newest'}
+            </button>
             {loading && <LoadingSpinner />}
             <ul className="deck-list">
-                {filteredDecks.map((deck) => {
+                {sortedDecks.map((deck) => {
                     const tag = tags.find((t) => t.id === deck.tagId);
                     return (
                         <div className="deck-item" key={deck.id}>
@@ -203,7 +213,7 @@ const DeckList = () => {
                     );
                 })}
             </ul>
-            {searchQuery && filteredDecks.length === 0 && (
+            {searchQuery && sortedDecks.length === 0 && (
                 <p className="no-results">No Decks or cards match "{searchQuery}".</p>
             )}
         </div>

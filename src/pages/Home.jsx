@@ -14,7 +14,8 @@ const Home = () => {
     const navigate = useNavigate();
     const { user, logout } = useAuth();
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null)
+    const [error, setError] = useState(null);
+    const [sortOrder, setSortOrder] = useState('newest');
 
     const getGreeting = () => {
         const hour = new Date().getHours();
@@ -50,6 +51,12 @@ const Home = () => {
     const inProgressDecks = decks
         .filter((deck) => (deck.percent || 0) > 0 && (deck.percent || 0) < 100)
         .sort((a, b) => (b.percent || 0) - (a.percent || 0));
+
+    const sortedDecks = [...decks].sort((a, b) => {
+        const aTime = a.createdAt?.toMillis() || 0;
+        const bTime = b.createdAt?.toMillis() || 0;
+        return sortOrder === 'newest' ? bTime - aTime : aTime - bTime;
+    });
 
     return (
         <div className="home-container">
@@ -113,7 +120,7 @@ const Home = () => {
                     <p className='see-all' onClick={() => navigate('/decks')}>See all</p>
                 </div>
                 <div className="home-decks">
-                    {decks.slice(0, 4).map((deck) => {
+                    {sortedDecks.slice(0, 4).map((deck) => {
                         const tag = tags.find((t) => t.id === deck.tagId);
                         return (
                             <div className="decks" key={deck.id}>
