@@ -2,11 +2,14 @@ import '../styles/Popup.css';
 import { IoIosCheckmark } from "react-icons/io";
 import { useState } from 'react';
 
-const Popup = ({ page, deck, tags, onClose, onUpdateTitle, onDeleteDeck, onSelectTag, onCreateTag, }) => {
+const Popup = ({ page, deck, tags, currentCard, onClose, onUpdateTitle, onDeleteDeck, onSelectTag, onCreateTag, onUpdateCard, }) => {
     const [newTitle, setNewTitle] = useState('');
     const [isCreatingTag, setIsCreatingTag] = useState(false);
     const [newTagName, setNewTagName] = useState('');
     const [newTagColor, setNewTagColor] = useState('#7C9F81')
+
+    const [editQuestion, setEditQuestion] = useState(currentCard?.question || '');
+    const [editAnswer, setEditAnswer] = useState(currentCard?.answer || '');
 
     return (
         <div className='popup-container' onClick={onClose}>
@@ -48,12 +51,20 @@ const Popup = ({ page, deck, tags, onClose, onUpdateTitle, onDeleteDeck, onSelec
                     <div className="review-popup">
                         <h1>Edit Flashcard</h1>
                         <div className='edit-question-div'>
-                            <p>Edit question</p>
+                            <h3>Edit question</h3>
+                            <textarea 
+                                value={editQuestion}
+                                onChange={(e) => setEditQuestion(e.target.value)}
+                            />
                         </div>
                         <div className='edit-answer-div'>
-                            <p>Edit answer</p>
+                            <h3>Edit answer</h3>
+                            <textarea 
+                                value={editAnswer}
+                                onChange={(e) => setEditAnswer(e.target.value)}
+                            />
                         </div>
-                        <p className='save-button'>Save changes</p>
+                        <p className='save-button' onClick={() => onUpdateCard(editQuestion, editAnswer)}>Save changes</p>
                     </div>
                 )}
             </div>

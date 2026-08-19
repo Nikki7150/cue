@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { fetchDeck, updateDeckProgress } from '../lib/decks';
+import { fetchDeck, updateDeckProgress, updateDeckCards } from '../lib/decks';
 import LoadingSpinner from '../components/LoadingSpinner';
 import Flashcard from '../components/Flashcard';
 import '../styles/Review.css';
@@ -10,6 +10,7 @@ import { PiShuffle } from "react-icons/pi";
 import ProgressBar from '../components/ProgressBar';
 import { useAuth } from '../AuthContext';
 import { fetchTags } from '../lib/tags';
+import Popup from '../components/Popup';
 
 
 const Review = () => {
@@ -83,6 +84,25 @@ const Review = () => {
     } 
 
     const tag = tags.find((t) => t.id === deck?.tagId);
+    const [isEditingCard, setIsEditingCard] = useState(false);
+
+    const handleUpdateCard = async (newQuestion, newAnswer) => {
+        if (!newQuestion.trim() || !newAnswer.trim()) {
+            setError('Question and answer cannot be empty.');
+            return;
+        }
+        try {
+            const newCards = cards.map((card, i) => 
+                i === cardIndex ? { question: newQuestion, answer: newAnswer} : card
+            );
+            await updateDeckCards(deckId, newCards);
+            setCards(newCards);
+            setIsEditingCard(false);
+        } catch (error) {
+            console.error('Failed to update card: ', error);
+            setError(error);
+        }
+    };
 
     return (
         <div className="review-container">
@@ -128,12 +148,23 @@ const Review = () => {
                         <button className="again-button" onClick={handleDontKnow}>
                             <IoMdRefresh size={26} />
                         </button>
+                        <button className='edit-button' onClick={() => setIsEditingCard(true)}>
+                            Edit
+                        </button>
                         <button className="next-button" onClick={handleNext}>
                             <MdNavigateNext size={26} />
                         </button>
                     </div>
                     <ProgressBar percent={Math.round(((cardIndex + 1) / cards.length) * 100)} color={tag ? tag.color : undefined}/>
                 </div>
+            )}
+            {isEditingCard && (
+                <Popup 
+                    page="review"
+                    currentCard={cards[cardIndex]}
+                    onClose={() => setIsEditingCard(false)}
+                    onUpdateCard={handleUpdateCard}
+                />
             )}
         </div>
     );

@@ -94,3 +94,13 @@ export const updateDeckProgress = async (deckId, percent) => {
         throw error;
     }
 }
+
+export const updateDeckCards = async (deckId, newCards) => {
+    const docRef = doc(db, "decks", deckId);
+    try {
+        await updateDoc(docRef, {cards: newCards});
+    } catch (error) {
+        console.error("updateDeckCards failed:", error);
+        throw error;
+    }
+};
