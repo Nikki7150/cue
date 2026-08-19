@@ -1,8 +1,17 @@
+:root {
+    --seashell: #fff4eb;
+    --wheat: #f6e0b6;
+    --shellstone: #d9cbc2;
+    --powder-blue: #a6bcc9;
+    --french-blue: #3e4b8e;
+    --midnight-violet: #3d1534;
+}
+
 html {
     font-size: 16px;
     line-height: 1.5;
     color: #333;
-    background-color: #f6f1e8;
+    background-color: var(--seashell);
     margin-left: 220px;
     padding: 30px;
     overflow-y: hidden;

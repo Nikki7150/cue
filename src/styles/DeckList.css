@@ -17,13 +17,14 @@
 }
 
 .deck-list-filter {
-    background: #ababab97;
+    background: var(--midnight-violet);
     border: none;
     padding: 10px;
     height: fit-content;
     border-radius: 10px;
     align-self: center;
     cursor: pointer;
+    color: var(--wheat);
 }
 
 .deck-list-filter:hover {
