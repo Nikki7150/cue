@@ -25,6 +25,9 @@
     align-self: center;
     cursor: pointer;
     color: var(--beige);
+    font-family: 'Schoolbell', cursive;
+    font-size: 1.2em;
+    margin-right: 40px;
 }
 
 .deck-list-filter:hover {
