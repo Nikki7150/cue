@@ -28,10 +28,11 @@
     margin: 0;
     font-family: 'Unkempt', cursive;
     font-size: 1.2em;
+    color: var(--teal);
 }
 
 .profile-icon {
-    color: pink;
+    color: var(--sky-blue);
 }
 
 .home-content {
@@ -58,19 +59,34 @@
     width: 300px;
 }
 
-.decks-stats {
-    background: rgba(244, 192, 192, 0.454);
-    border: 2px solid rgb(244, 192, 192);
+.progress-stats {
+    background: var(--sky-blue);
+    border: 2px solid var(--teal);
+    color: var(--navy);
+}
+
+.progress-stats .stats-icons {
+    background-color: var(--beige);
 }
 
 .cards-stats {
-    background: rgba(131, 175, 140, 0.454);
-    border: 2px solid rgb(131, 175, 140);
+    background: var(--teal);
+    border: 2px solid var(--navy);
+    color: var(--beige);
 }
 
-.progress-stats {
-    background: rgba(131, 159, 175, 0.454);
-    border: 2px solid rgb(131, 159, 175);
+.cards-stats .stats-icons {
+    background-color: var(--sky-blue);
+}
+
+.decks-stats {
+    background: var(--navy);
+    border: 2px solid var(--sky-blue);
+    color: var(--white);
+}
+
+.decks-stats .stats-icons {
+    background-color: var(--teal);
 }
 
 .stats-heading {
@@ -94,6 +110,7 @@
     margin: 0;
     font-family: 'Unkempt', cursive;
     font-size: 1.5em;
+    color: var(--teal);
 }
 
 .hero-buttons {
@@ -111,14 +128,15 @@
 }
 
 .see-all:hover {
-    color: pink;
+    color: var(--teal);
 }
 
 .add-decks {
     margin: 0;
     padding: 5px 10px;
-    background-color: aliceblue;
+    background-color: var(--sky-blue);
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .home-decks {
@@ -129,7 +147,7 @@
 
 .decks {
     justify-content: center;
-    background: #d6cfc3b8;
+    background: var(--beige);
     width: 300px;
     padding: 10px;
     border-radius: 10px;
@@ -153,12 +171,11 @@
 }
 
 .info-click:hover {
-    color: pink;
+    color: var(--teal);
 }
 
 .stats-icons {
     padding: 20px;
-    background-color: antiquewhite;
     border-radius: 50%;
     margin-left: 10px;
 }

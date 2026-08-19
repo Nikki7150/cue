@@ -5,8 +5,8 @@
 
 .search-bar {
     padding: 10px;
-    background: var(--wheat);
-    border: 2px solid var(--midnight-violet);
+    background: var(--sky-blue);
+    border: 2px solid var(--navy);
     border-radius: 10px;
     display: flex;
     flex-direction: row;
@@ -20,7 +20,7 @@
     border: none;
     font-size: 1.2em;
     font-family: 'Schoolbell', cursive;
-    color: var(--midnight-violet);
+    color: var(--navy);
 }
 
 .search-input:focus {

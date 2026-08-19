@@ -1,17 +1,16 @@
 :root {
-    --seashell: #fff4eb;
-    --wheat: #f6e0b6;
-    --shellstone: #d9cbc2;
-    --powder-blue: #a6bcc9;
-    --french-blue: #3e4b8e;
-    --midnight-violet: #3d1534;
+    --navy: #2f4156;
+    --teal: #567c8d;
+    --sky-blue: #c8d9e6;
+    --beige: #f5efeb;
+    --white: #fdfcfb;
 }
 
 html {
     font-size: 16px;
     line-height: 1.5;
-    color: #333;
-    background-color: var(--seashell);
+    color: var(--navy);
+    background-color: var(--beige);
     margin-left: 220px;
     padding: 30px;
     overflow-y: hidden;

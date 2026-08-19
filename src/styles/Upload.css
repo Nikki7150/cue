@@ -15,7 +15,7 @@
 .upload-title {
     font-size: 2rem;
     font-weight: bold;
-    color: #333;
+    color: var(--navy);
     font-family: 'Emilys Candy', cursive;
 }
 
@@ -37,15 +37,15 @@
     height: auto;
     resize: none;
     margin: 10px;
-    border: dashed 2px #d1c6b3;
-    background-color: #eee7dbcb;
+    border: dashed 2px var(--sky-blue);
+    background-color: var(--white);
     font-family: 'Unkempt', cursive;
     font-size: 1em;
 }
 
 .upload-text:focus {
     outline: none;
-    border: solid 2px #b9ad98;
+    border: solid 2px var(--teal);
 }
 
 .upload-input {
@@ -53,7 +53,7 @@
 }
 
 .upload-box {
-    border: dashed 2px #d1c6b3;
+    border: dashed 2px var(--sky-blue);
     border-radius: 22px;
     cursor: pointer;
     padding: 20px;
@@ -75,8 +75,8 @@
 
 .upload-button {
     padding: 10px;
-    border: solid 2px #b9ad98;
-    background-color: #eee7dbcb;
+    border: solid 2px var(--teal);
+    background-color: var(--sky-blue);
     position: fixed;
     left: 56%;
     transform: translateX(-50%);
@@ -88,6 +88,7 @@
 }
 
 .upload-button:hover {
-    border: solid 2px #b9ad98;
-    background-color: #d1c6b3;
+    border: solid 2px var(--navy);
+    background-color: var(--teal);
+    color: var(--sky-blue);
 }

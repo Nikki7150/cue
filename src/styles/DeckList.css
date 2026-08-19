@@ -12,23 +12,23 @@
 .deck-list-title {
     font-size: 2rem;
     font-weight: bold;
-    color: #333;
+    color: var(--navy);
     font-family: 'Emilys Candy', cursive;
 }
 
 .deck-list-filter {
-    background: var(--midnight-violet);
+    background: var(--navy);
     border: none;
     padding: 10px;
     height: fit-content;
     border-radius: 10px;
     align-self: center;
     cursor: pointer;
-    color: var(--wheat);
+    color: var(--beige);
 }
 
 .deck-list-filter:hover {
-    background: #abababd8;
+    background: var(--teal);
 }
 
 .deck-list {
@@ -50,7 +50,7 @@
     background: rgba(255, 255, 255, 0.79);
     border: none;
     cursor: pointer;
-    color: #333;
+    color: var(--navy);
     display: none;
     position: absolute;
     top: 0;
@@ -62,7 +62,7 @@
     position: absolute;
     top: 40px;
     right: 0;
-    background: rgba(255, 255, 255, 0.806);
+    background: #f5efebd9;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 1;
@@ -79,7 +79,7 @@
 }
 
 .menu-item:hover {
-    background-color: rgba(203, 203, 203, 0.806);
+    background-color: var(--beige);
 }
 
 .edit-name-box {
@@ -102,7 +102,7 @@
     background: none;
     border: none;
     padding: 0;
-    color: #7C9F81;
+    color: var(--teal);
     cursor: pointer;
 }
 
@@ -112,14 +112,14 @@
 
 .add-tag {
     width: 100%;
-    border: 1px solid gainsboro;
-    background-color: rgba(231, 231, 231, 0.791);
+    border: 1px solid var(--sky-blue);
+    background-color: var(--beige);
     cursor: pointer;
     margin-bottom: 5px;
 }
 
 .add-tag:hover {
-    background:rgba(0, 0, 0, 0.1);
+    background:#f5efeb7b;
 }
 
 .new-tag-form {
@@ -148,7 +148,7 @@
     width: 20px;
     height: 20px;
     padding: 0;
-    border: 1px solid black;
+    border: 1px solid var(--navy);
     border-radius: 50%;
     cursor: pointer;
 }
@@ -164,14 +164,14 @@
 
 .tag-create-submit {
     width: 100%;
-    border: 1px solid gainsboro;
-    background-color: rgba(231, 231, 231, 0.791);
+    border: 1px solid var(--sky-blue);
+    background-color: var(--beige);
     cursor: pointer;
     margin-bottom: 5px;
 }
 
 .tag-create-submit:hover {
-    background:rgba(0, 0, 0, 0.1);
+    background:#f5efeb7b;
 }
 
 .tags {
@@ -195,7 +195,7 @@
 }
 
 .search-highlight {
-    background: #ffe58a;
+    background: var(--beige);
     border-radius: 2px;
     padding: 0;
     margin: 0;
