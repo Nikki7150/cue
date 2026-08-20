@@ -1,0 +1,11 @@
+.user-popup {
+    background-color: var(--teal);
+    padding: 10px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    position: absolute;
+    bottom: 90px;
+    left: 10px;
+    width: 180px;
+    color: var(--beige);
+}

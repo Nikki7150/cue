@@ -142,9 +142,6 @@ const Home = () => {
                 </div>
                 {loading && <LoadingSpinner />}
             </div>
-            {/*
-            <button onClick={() => navigate('/login')} style={{ display: user ? 'none' : 'block' }} className='login-button'>Login</button>
-            <button className="logout-button" style={{ display: user ? 'block' : 'none' }} onClick={logout}>Logout</button>*/}
         </div>
     );
 };
