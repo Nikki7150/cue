@@ -104,3 +104,20 @@ export const updateDeckCards = async (deckId, newCards) => {
         throw error;
     }
 };
+
+export const clearTagFromDecks = async (tagId) => {
+    const decksRef = collection(db, "decks");
+    const q = query(decksRef, where("tagId", "==", tagId));
+    try {
+        const snapshot = await getDocs(q);
+        const updateDecks = snapshot.docs.map((deckDoc) => {
+            const deckDocRef = doc(db, "decks", deckDoc.id);
+            return updateDoc(deckDocRef, { tagId: null });
+        });
+        await Promise.all(updateDecks);
+        return { success: true, count: snapshot.docs.length };
+    } catch (error) {
+        console.log("clearTagFromDecks failed: ", error);
+        throw error;
+    }
+};

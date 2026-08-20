@@ -5,7 +5,8 @@ import {
     query, 
     where, 
     getDocs, 
-    serverTimestamp
+    serverTimestamp,
+    deleteDoc
 } from 'firebase/firestore';
 
 export const createTag = async (userId, name, color) => {
@@ -34,5 +35,15 @@ export const fetchTags = async (userId) => {
     } catch (error) {
         console.log("fetchTags failed: ", error);
         return [];
+    }
+};
+
+export const deleteTag = async (tagId) => {
+    const docRef= doc(db, "tags", tagId);
+    try {
+        await deleteDoc(docRef);
+    } catch (error) {
+        console.error("deleteTag failed: ", error);
+        throw error;
     }
 };

@@ -35,9 +35,12 @@ export async function generateCards(text) {
     });
 
     const prompt = `
-        Generate a set of flashcards (question and answer pairs) covering the
-        key concepts in the following material. Create as many cards as are
-        reasonably needed to cover the material well.
+        Generate a thorough set of flashcards (question and answer pairs)
+        covering the key concepts in the following material. Create one
+        flashcard for every distinct concept, definition, fact, or named
+        example — do not limit yourself to a small summary regardless of
+        how long the material is. A longer or more detailed source should
+        produce proportionally more flashcards, not fewer.
 
         Material:
         ${text}

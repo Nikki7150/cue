@@ -155,7 +155,7 @@ const Review = () => {
                             <MdNavigateNext size={26} />
                         </button>
                     </div>
-                    <ProgressBar percent={Math.round(((cardIndex + 1) / cards.length) * 100)} color={tag ? tag.color : undefined}/>
+                    <ProgressBar percent={Math.round(((cardIndex + 1) / cards.length) * 100)} color={tag ? tag.color : '#729aad'}/>
                 </div>
             )}
             {isEditingCard && (

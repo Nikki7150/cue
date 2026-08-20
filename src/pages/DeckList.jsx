@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
-import { fetchDecks, updateTitle, deleteDeck, updateDeckTag } from '../lib/decks';
+import { fetchDecks, updateTitle, deleteDeck, updateDeckTag, clearTagFromDecks } from '../lib/decks';
 import LoadingSpinner from '../components/LoadingSpinner';
 import Deck from '../components/Deck';
 import { BsThreeDotsVertical } from "react-icons/bs";
 import '../styles/DeckList.css';
-import { createTag, fetchTags } from '../lib/tags';
+import { createTag, deleteTag, fetchTags } from '../lib/tags';
 import ProgressBar from '../components/ProgressBar';
 import SearchBar from '../components/SearchBar';
 import Popup from '../components/Popup';
@@ -113,6 +113,22 @@ const DeckList = () => {
         }
     };
 
+    const handleDeleteTag = async (tagId) => {
+        const confirmed = window.confirm("Are you sure you want to delete this tag? Decks using it will lose the tag.");
+        if (!confirmed) return;
+        try {
+            await clearTagFromDecks(tagId);
+            await deleteTag(tagId);
+            setDecks((prev) => 
+                prev.map((d) => (d.tagId === tagId ? { ...d, tagId: null } : d))
+            );
+            setTags((prev) => prev,filter((t) => t.id !== tagId));
+        } catch (error) {
+            console.error('Failed to delete tag: ', error);
+            setError(error);
+        }
+    };
+
     return (
         <div className="deck-list-container">
             <div className='deck-list-header'>
@@ -128,8 +144,8 @@ const DeckList = () => {
                     const tag = tags.find((t) => t.id === deck.tagId);
                     return (
                         <div className="deck-item" key={deck.id}>
-                            <Deck deck={deck} onClick={() => navigate('/review/' + deck.id)} tagColor={tag ? tag.color : undefined} searchQuery={searchQuery} />
-                            <ProgressBar percent={deck.percent || 0} color={tag ? tag.color : undefined}/>
+                            <Deck deck={deck} onClick={() => navigate('/review/' + deck.id)} tagColor={tag ? tag.color : '#729aad'} searchQuery={searchQuery} />
+                            <ProgressBar percent={deck.percent || 0} color={tag ? tag.color : '#729aad'}/>
                             <button
                                 className="deck-menu-button"
                                 onClick={(e) => handleMenuClick(e, deck.id)}

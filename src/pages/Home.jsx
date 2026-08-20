@@ -102,7 +102,7 @@ const Home = () => {
                                 const tag = tags.find((t) => t.id === deck.tagId);
                                 return (
                                     <div className="decks" key={deck.id}>
-                                        <Deck deck={deck} onClick={() => navigate('/review/' + deck.id)} tagColor={tag ? tag.color : undefined} />
+                                        <Deck deck={deck} onClick={() => navigate('/review/' + deck.id)} tagColor={tag ? tag.color : '#729aad'} />
                                     </div>
                                 );
                             })}
@@ -127,9 +127,9 @@ const Home = () => {
                         const tag = tags.find((t) => t.id === deck.tagId);
                         return (
                             <div className="decks" key={deck.id}>
-                                <Deck deck={deck} onClick={() => navigate('/review/' + deck.id)} tagColor={tag ? tag.color : undefined} />
+                                <Deck deck={deck} onClick={() => navigate('/review/' + deck.id)} tagColor={tag ? tag.color : '#729aad'} />
                                 <p className="deck-cards-length">{deck.cards?.length || 0} cards</p>
-                                <ProgressBar percent={deck.percent || 0} color={tag ? tag.color : undefined} />
+                                <ProgressBar percent={deck.percent || 0} color={tag ? tag.color : '#729aad'} />
                             </div>
                         );
                     })}

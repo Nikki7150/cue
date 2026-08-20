@@ -1,6 +1,7 @@
 import '../styles/Popup.css';
 import { IoIosCheckmark } from "react-icons/io";
 import { useState } from 'react';
+import { IoTrashOutline } from "react-icons/io5";
 
 const Popup = ({ page, deck, tags, currentCard, onClose, onUpdateTitle, onDeleteDeck, onSelectTag, onCreateTag, onUpdateCard, }) => {
     const [newTitle, setNewTitle] = useState('');
