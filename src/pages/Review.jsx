@@ -11,7 +11,7 @@ import ProgressBar from '../components/ProgressBar';
 import { useAuth } from '../AuthContext';
 import { fetchTags } from '../lib/tags';
 import Popup from '../components/Popup';
-
+import { FaRegEdit } from "react-icons/fa";
 
 const Review = () => {
     const { deckId } = useParams();
@@ -149,7 +149,7 @@ const Review = () => {
                             <IoMdRefresh size={26} />
                         </button>
                         <button className='edit-button' onClick={() => setIsEditingCard(true)}>
-                            Edit
+                            <FaRegEdit size={26} />
                         </button>
                         <button className="next-button" onClick={handleNext}>
                             <MdNavigateNext size={26} />

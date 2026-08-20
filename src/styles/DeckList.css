@@ -61,6 +61,10 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.deck-item:hover .deck-menu-button {
+    display: block;
+}
+/*
 .menu-popover {
     position: absolute;
     top: 40px;
@@ -70,10 +74,6 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 1;
     width: 150px;
-}
-
-.deck-item:hover .deck-menu-button {
-    display: block;
 }
 
 .menu-item {
@@ -195,7 +195,7 @@
 
 .tag-name {
     margin: 0;
-}
+}*/
 
 .search-highlight {
     background: var(--beige);

@@ -6,7 +6,7 @@ const Popup = ({ page, deck, tags, currentCard, onClose, onUpdateTitle, onDelete
     const [newTitle, setNewTitle] = useState('');
     const [isCreatingTag, setIsCreatingTag] = useState(false);
     const [newTagName, setNewTagName] = useState('');
-    const [newTagColor, setNewTagColor] = useState('#7C9F81')
+    const [newTagColor, setNewTagColor] = useState('#729aad')
 
     const [editQuestion, setEditQuestion] = useState(currentCard?.question || '');
     const [editAnswer, setEditAnswer] = useState(currentCard?.answer || '');
@@ -16,15 +16,16 @@ const Popup = ({ page, deck, tags, currentCard, onClose, onUpdateTitle, onDelete
             <div className='popup' onClick={(e) => e.stopPropagation()}>
                 {page === 'deck-list' && (
                     <div className='deck-list-popup'>
-                        <h1>Edit Deck</h1>
+                        <h1 className='decklist-popup-heading'>Edit Deck</h1>
                         <div className='edit-name-div'>
-                            <h3>Edit Name: </h3>
+                            <h3 className='edit-name-title'>Edit Name: </h3>
                             <div className="edit-name-box">
                                 <input className="input-edit-title" type="text" placeholder={deck.title} value={newTitle} onChange={(e) => setNewTitle(e.target.value)} />
-                                <button className="edit-name-done" onClick={() => onUpdateTitle(deck.id, newTitle)}><IoIosCheckmark size={24}/></button>
+                                <button className="edit-name-done" onClick={() => onUpdateTitle(deck.id, newTitle)}><IoIosCheckmark size={40}/></button>
                             </div>
                         </div>
                         <div className='tags-div'>
+                            <h3 className='tag-title'>Tags: </h3>
                             <button className="add-tag" onClick={() => setIsCreatingTag(!isCreatingTag)}>+ Add tag</button>
                             {isCreatingTag && (
                                 <div className='new-tag-form'>
@@ -44,24 +45,26 @@ const Popup = ({ page, deck, tags, currentCard, onClose, onUpdateTitle, onDelete
                                 ))}
                             </ul>
                         </div>
-                        <p className="delete-button" onClick={() => onDeleteDeck(deck.id)}>Delete</p>
+                        <h3 className="delete-button" onClick={() => onDeleteDeck(deck.id)}>Delete</h3>
                     </div>
                 )}
                 {page === 'review' && (
                     <div className="review-popup">
-                        <h1>Edit Flashcard</h1>
+                        <h1 className='review-popup-heading'>Edit Flashcard</h1>
                         <div className='edit-question-div'>
-                            <h3>Edit question</h3>
+                            <h3 className='edit-question-title'>Edit question</h3>
                             <textarea 
                                 value={editQuestion}
                                 onChange={(e) => setEditQuestion(e.target.value)}
+                                className='question-input'
                             />
                         </div>
                         <div className='edit-answer-div'>
-                            <h3>Edit answer</h3>
+                            <h3 className='edit-answer-title'>Edit answer</h3>
                             <textarea 
                                 value={editAnswer}
                                 onChange={(e) => setEditAnswer(e.target.value)}
+                                className='answer-input'
                             />
                         </div>
                         <p className='save-button' onClick={() => onUpdateCard(editQuestion, editAnswer)}>Save changes</p>

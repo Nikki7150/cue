@@ -72,7 +72,7 @@
 .cards-stats {
     background: var(--teal);
     border: 2px solid var(--navy);
-    color: var(--beige);
+    color: var(--white);
 }
 
 .cards-stats .stats-icons {
@@ -82,7 +82,7 @@
 .decks-stats {
     background: var(--navy);
     border: 2px solid var(--sky-blue);
-    color: var(--white);
+    color: var(--beige);
 }
 
 .decks-stats .stats-icons {

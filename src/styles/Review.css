@@ -79,7 +79,7 @@
     margin-left: 50px;
 }
 
-.again-button, .next-button, .shuffle-button, .close-button {
+.again-button, .next-button, .shuffle-button, .close-button, .edit-button {
     background: transparent;
     border: none;
     cursor: pointer;
@@ -89,7 +89,7 @@
     border-radius: 5px;
 }
 
-.again-button:hover, .next-button:hover, .shuffle-button:hover, .close-button:hover {
+.again-button:hover, .next-button:hover, .shuffle-button:hover, .close-button:hover, .edit-button:hover {
     color: var(--teal);
 }
 

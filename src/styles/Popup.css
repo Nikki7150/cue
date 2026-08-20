@@ -11,9 +11,224 @@
 }
 
 .popup {
-    background-color: #fff;
+    background-color: var(--sky-blue);
     width: 400px;
     height: 100%;
     padding: 24px;
     overflow-y: auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.588);
+}
+
+.deck-list-popup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.decklist-popup-heading {
+    font-family: 'Emilys Candy', cursive;
+}
+
+.edit-name-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.edit-name-title, .tag-title, .delete-button {
+    font-family: 'Unkempt', cursive;
+    font-size: 1.4em;
+}
+
+.edit-name-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+}
+
+.input-edit-title {
+    font-size: 1.2em;
+    font-family: 'Schoolbell', cursive;
+    background: transparent;
+    width: 300px;
+}
+
+.input-edit-title:focus {
+    outline: none;
+}
+
+.edit-name-done {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--teal);
+    cursor: pointer;
+}
+
+.tags-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-tag, .tag-create-submit {
+    padding: 10px;
+    background-color: var(--beige);
+    border: 2px solid var(--teal);
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 10px;
+    font-family: 'Emilys Candy', cursive;
+    font-size: 1em;
+}
+
+.add-tag:hover, .tag-create-submit:hover {
+    background-color: var(--sky-blue);
+}
+
+.new-tag-form {
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tag-inputs {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.color-input::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+.color-input::-webkit-color-swatch {
+    border: none;
+    border-radius: 50%;
+}
+
+.color-input {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 1px solid var(--navy);
+    border-radius: 50%;
+    cursor: pointer;
+    align-self: center;
+}
+
+.name-input {
+    font-size: 1.2em;
+    font-family: 'Schoolbell', cursive;
+    background: transparent;
+    width: 200px;
+    overflow-x: auto;
+}
+
+.name-input:focus {
+    outline: none;
+}
+
+.tags {
+    padding: 5px;
+    width: 200px;
+    border: 1px dashed var(--teal);
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.tag-item {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.tag-item:hover {
+    background-color: var(--beige);
+}
+
+.tag-swatch {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-self: center;
+}
+
+.tag-name {
+    margin: 0;
+    font-family: 'Schoolbell', cursive;
+    font-size: 1.05em;;
+}
+
+.delete-button {
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    color: red;
+}
+
+.review-popup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.review-popup-heading {
+    font-family: 'Emilys Candy', cursive;
+}
+
+.edit-question-div, .edit-answer-div {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+}
+
+.edit-question-title, .edit-answer-title {
+    font-family: 'Unkempt', cursive;
+    font-size: 1.4em;
+    margin: 10px;
+}
+
+.question-input {
+    font-size: 1.2em;
+    font-family: 'Schoolbell', cursive;
+    background: transparent;
+    width: 400px;
+    height: 150px;
+    resize: none;
+    overflow-y: auto;
+}
+
+.answer-input {
+    font-size: 1.2em;
+    font-family: 'Schoolbell', cursive;
+    background: transparent;
+    width: 400px;
+    height: 350px;
+    resize: none;
+    overflow-y: auto;
+}
+
+.answer-input:focus, .question-input:focus {
+    outline: none;
+}
+
+.save-button {
+    cursor: pointer;
+    font-family: 'Unkempt', cursive;
+    font-size: 1.4em;
+}
+
+.save-button:hover {
+    color: var(--teal);
 }
