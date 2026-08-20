@@ -232,3 +232,7 @@
 .save-button:hover {
     color: var(--teal);
 }
+
+.no-tags {
+    font-family: 'unkempt', cursive;
+}

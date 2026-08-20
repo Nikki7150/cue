@@ -6,7 +6,8 @@ import {
     where, 
     getDocs, 
     serverTimestamp,
-    deleteDoc
+    deleteDoc, 
+    doc
 } from 'firebase/firestore';
 
 export const createTag = async (userId, name, color) => {

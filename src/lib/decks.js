@@ -105,9 +105,9 @@ export const updateDeckCards = async (deckId, newCards) => {
     }
 };
 
-export const clearTagFromDecks = async (tagId) => {
+export const clearTagFromDecks = async (userId, tagId) => {
     const decksRef = collection(db, "decks");
-    const q = query(decksRef, where("tagId", "==", tagId));
+    const q = query(decksRef, where("userId", "==", userId), where("tagId", "==", tagId));
     try {
         const snapshot = await getDocs(q);
         const updateDecks = snapshot.docs.map((deckDoc) => {

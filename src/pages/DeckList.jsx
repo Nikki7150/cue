@@ -117,12 +117,12 @@ const DeckList = () => {
         const confirmed = window.confirm("Are you sure you want to delete this tag? Decks using it will lose the tag.");
         if (!confirmed) return;
         try {
-            await clearTagFromDecks(tagId);
+            await clearTagFromDecks(user.uid, tagId);
             await deleteTag(tagId);
             setDecks((prev) => 
                 prev.map((d) => (d.tagId === tagId ? { ...d, tagId: null } : d))
             );
-            setTags((prev) => prev,filter((t) => t.id !== tagId));
+            setTags((prev) => prev.filter((t) => t.id !== tagId));
         } catch (error) {
             console.error('Failed to delete tag: ', error);
             setError(error);
@@ -162,6 +162,7 @@ const DeckList = () => {
                                     onDeleteDeck={handleDeleteDeck}
                                     onSelectTag={handleSelectTag}
                                     onCreateTag={handleCreateTag}
+                                    onDeleteTag={handleDeleteTag}
                                 />
                             )}
                         </div>

@@ -3,7 +3,7 @@ import { IoIosCheckmark } from "react-icons/io";
 import { useState } from 'react';
 import { IoTrashOutline } from "react-icons/io5";
 
-const Popup = ({ page, deck, tags, currentCard, onClose, onUpdateTitle, onDeleteDeck, onSelectTag, onCreateTag, onUpdateCard, }) => {
+const Popup = ({ page, deck, tags, currentCard, onClose, onUpdateTitle, onDeleteDeck, onSelectTag, onCreateTag, onUpdateCard, onDeleteTag }) => {
     const [newTitle, setNewTitle] = useState('');
     const [isCreatingTag, setIsCreatingTag] = useState(false);
     const [newTagName, setNewTagName] = useState('');
@@ -42,8 +42,12 @@ const Popup = ({ page, deck, tags, currentCard, onClose, onUpdateTitle, onDelete
                                     <div className="tag-item" key={tag.id} onClick={() => onSelectTag(deck.id, tag.id)}>
                                         <div style={{ backgroundColor: tag.color }} className="tag-swatch" />
                                         <p className="tag-name">{tag.name}</p>
+                                        <button className='delete-tag' onClick={(e) => {e.stopPropagation(); onDeleteTag(tag.id);}}><IoTrashOutline size={20}/></button>
                                     </div>
                                 ))}
+                                {tags.length === 0 && (
+                                    <p className="no-tags">No tags created yet.</p>
+                                )}
                             </ul>
                         </div>
                         <h3 className="delete-button" onClick={() => onDeleteDeck(deck.id)}>Delete</h3>
