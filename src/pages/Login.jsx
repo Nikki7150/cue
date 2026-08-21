@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
+import '../styles/Login.css';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -32,7 +33,7 @@ const Login = () => {
             {error && <p className="error">{error}</p>}
             <form onSubmit={handleSubmit} className="login-form">
                 <div className="form-group">
-                    <label htmlFor="email">Email</label>
+                    <label htmlFor="email">Email: </label>
                     <input
                         type="email"
                         id="email"
@@ -42,7 +43,7 @@ const Login = () => {
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password">Password: </label>
                     <input
                         type="password"
                         id="password"
@@ -53,7 +54,7 @@ const Login = () => {
                 </div>
                 {isSignUp && (
                     <div className="form-group">
-                        <label htmlFor="username">Username</label>
+                        <label htmlFor="username">Username: </label>
                         <input
                             type="text"
                             id="username"

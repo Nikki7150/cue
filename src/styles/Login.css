@@ -1,0 +1,84 @@
+.login-container {
+    margin: 0;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 15%;
+}
+
+.login-title {
+    margin: 0;
+    font-family: 'Emilys Candy', cursive;
+    font-size: 1.7em;
+}
+
+.error {
+    color: red;
+    font-family: 'Unkempt', cursive;
+}
+
+.login-form {
+    padding: 10px;
+    font-family: 'Unkempt', cursive;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.form-group {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-group label {
+    font-size: 1.4em;
+    color: var(--teal);
+}
+
+#email, #password, #username {
+    background: transparent;
+    border: none;
+    border-bottom: 2px dashed var(--teal);
+    width: 300px;
+    font-family: 'Schoolbell', cursive;
+    font-size: 1.2em;
+    color: var(--navy);
+}
+
+.submit-btn {
+    padding: 10px;
+    background-color: var(--beige);
+    border: 2px solid var(--teal);
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 10px;
+    font-family: 'Emilys Candy', cursive;
+    font-size: 1em;
+}
+
+.submit-btn:hover {
+    background-color: var(--sky-blue);
+}
+
+.toggle-btn {
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    width: fit-content;
+    margin-bottom: 10px;
+    font-family: 'Emilys Candy', cursive;
+    font-size: 1em;
+    color: var(--teal);
+}
+
+.toggle-btn:hover {
+    color: var(--sky-blue);
+    background-color: var(--teal);
+}
