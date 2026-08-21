@@ -31,8 +31,10 @@
     color: var(--teal);
 }
 
-.profile-icon {
-    color: var(--sky-blue);
+.pfp-picture {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
 }
 
 .home-content {

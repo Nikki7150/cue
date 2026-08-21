@@ -9,6 +9,7 @@ import { useAuth } from '../AuthContext';
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { useState } from 'react';
 import { FaUserCircle } from 'react-icons/fa';
+import Profile from '../assets/pfp.jpeg';
 
 const Navbar = () => {
     const { user, logout } = useAuth();
@@ -45,11 +46,7 @@ const Navbar = () => {
                 />
             )}
             <div className={`navbar-profile ${isUserPopup ? 'active' : ''}`}>
-                {user?.photoURL ? (
-                    <img className="profile-picture" src={user.photoURL} alt="Profile" />
-                ) : (
-                    <FaUserCircle className="profile-picture" />
-                )}
+                <img className="profile-picture" src={Profile} alt="Profile" />
                 <p className="user-name">{user ? user?.displayName : 'Guest'}</p>
                 <button className="open-button" onClick={() => setIsUserPopup(!isUserPopup)}>{isUserPopup ? <IoIosArrowUp size={25} /> : <IoIosArrowDown size={25} /> }</button>
             </div>

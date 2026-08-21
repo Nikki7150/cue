@@ -10,6 +10,7 @@ import { useState, useEffect } from 'react';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { PiCardsThree, PiCards } from "react-icons/pi";
 import { TbProgress } from "react-icons/tb";
+import Profile from '../assets/pfp.jpeg';
 
 const Home = () => {
     const navigate = useNavigate();
@@ -66,7 +67,7 @@ const Home = () => {
                     <h1 className="home-greeting">{getGreeting()}, {user ? user?.displayName : 'Guest'}!</h1>
                     <p className="home-subtitle">Ready to cue your brain?</p>
                 </div>
-                <FaUserCircle size={54} className="profile-icon" />
+                <img className="pfp-picture" src={Profile} alt="Profile" />
             </div>
             <div className="home-content">
                 <div className="home-stats">
