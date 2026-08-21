@@ -6,8 +6,9 @@ import { IoHomeOutline } from "react-icons/io5";
 import '../styles/Navbar.css';
 import UserProfilePopup from './UserProfilePopup';
 import { useAuth } from '../AuthContext';
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { useState } from 'react';
+import { FaUserCircle } from 'react-icons/fa';
 
 const Navbar = () => {
     const { user, logout } = useAuth();
@@ -43,10 +44,14 @@ const Navbar = () => {
                     logout={logout}
                 />
             )}
-            <div className="navbar-profile">
-                <img className="profile-picture" />
+            <div className={`navbar-profile ${isUserPopup ? 'active' : ''}`}>
+                {user?.photoURL ? (
+                    <img className="profile-picture" src={user.photoURL} alt="Profile" />
+                ) : (
+                    <FaUserCircle className="profile-picture" />
+                )}
                 <p className="user-name">{user ? user?.displayName : 'Guest'}</p>
-                <button className="open-button" onClick={() => setIsUserPopup(!isUserPopup)}><IoIosArrowDown size={25} /></button>
+                <button className="open-button" onClick={() => setIsUserPopup(!isUserPopup)}>{isUserPopup ? <IoIosArrowUp size={25} /> : <IoIosArrowDown size={25} /> }</button>
             </div>
         </nav>
     );
