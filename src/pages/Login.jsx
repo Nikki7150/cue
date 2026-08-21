@@ -5,12 +5,16 @@ import '../styles/Login.css';
 
 const Login = () => {
     const navigate = useNavigate();
-    const { login, signUp } = useAuth();
+    const { login, signUp, user } = useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
     const [error, setError] = useState('');
     const [isSignUp, setIsSignUp] = useState(false);
+
+    useEffect(() => {
+        if (user) navigate('/');
+    }, [user, navigate]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
