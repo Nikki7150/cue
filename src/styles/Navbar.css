@@ -20,6 +20,20 @@
     font-family: 'Emilys Candy', cursive;
 }
 
+.navbar-logo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.navbar-logo a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .navbar-links {
     display: flex;
     flex-direction: column;
@@ -106,4 +120,10 @@
     padding: -10px;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.cue-logo {
+    width: 150px;
+    display: block;
+    margin: 0 auto;
 }

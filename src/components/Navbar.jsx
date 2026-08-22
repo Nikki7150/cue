@@ -10,6 +10,7 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { useState } from 'react';
 import { FaUserCircle } from 'react-icons/fa';
 import Profile from '../assets/pfp.jpeg';
+import CueLogo from '../assets/cue-logo.png';
 
 const Navbar = () => {
     const { user, logout } = useAuth();
@@ -18,7 +19,7 @@ const Navbar = () => {
         <nav className="navbar">
             <div className="navbar-logo">
                 <NavLink to="/">
-                    <h2>Cue</h2>
+                    <img className="cue-logo" src={CueLogo} alt="Logo" />
                 </NavLink>
             </div>
             <div className="navbar-links">
