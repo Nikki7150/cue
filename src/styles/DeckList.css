@@ -64,142 +64,24 @@
 .deck-item:hover .deck-menu-button {
     display: block;
 }
-/*
-.menu-popover {
-    position: absolute;
-    top: 40px;
-    right: 0;
-    background: #f5efebd9;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    z-index: 1;
-    width: 150px;
-}
-
-.menu-item {
-    cursor: pointer;
-    margin: 5px 10px;
-}
-
-.menu-item:hover {
-    background-color: var(--beige);
-}
-
-.edit-name-box {
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-}
-
-.input-edit-title {
-    background: transparent;
-    width: 100px;
-    margin-left: 5px;
-}
-
-.input-edit-title:focus {
-    outline: none;
-}
-
-.edit-name-done {
-    background: none;
-    border: none;
-    padding: 0;
-    color: var(--teal);
-    cursor: pointer;
-}
-
-.tag-box {
-    margin: 5px 10px;
-}
-
-.add-tag {
-    width: 100%;
-    border: 1px solid var(--sky-blue);
-    background-color: var(--beige);
-    cursor: pointer;
-    margin-bottom: 5px;
-}
-
-.add-tag:hover {
-    background:#f5efeb7b;
-}
-
-.new-tag-form {
-    margin-bottom: 5px;
-    display: flex;
-    flex-direction: column;
-}
-
-.tag-inputs {
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-    margin-bottom: 5px;
-}
-
-.color-input::-webkit-color-swatch-wrapper {
-    padding: 0;
-}
-
-.color-input::-webkit-color-swatch {
-    border: none;
-    border-radius: 50%;
-}
-
-.color-input {
-    width: 20px;
-    height: 20px;
-    padding: 0;
-    border: 1px solid var(--navy);
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-.name-input {
-    width: 95px;
-    background: transparent;
-}
-
-.name-input:focus {
-    outline: none;
-}
-
-.tag-create-submit {
-    width: 100%;
-    border: 1px solid var(--sky-blue);
-    background-color: var(--beige);
-    cursor: pointer;
-    margin-bottom: 5px;
-}
-
-.tag-create-submit:hover {
-    background:#f5efeb7b;
-}
-
-.tags {
-    padding: 0;
-}
-
-.tag-item {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    cursor: pointer;
-}
-
-.tag-swatch {
-    width: 20px;
-    height: 20px;
-}
-
-.tag-name {
-    margin: 0;
-}*/
 
 .search-highlight {
     background: var(--beige);
     border-radius: 2px;
     padding: 0;
     margin: 0;
+}
+
+.tag-filter-row {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    font-family: 'Unkempt', cursive;
+}
+
+.tag-chip {
+    padding: 5px;
+    cursor: pointer;
+    font-family: 'Schoolbell', cursive;
 }

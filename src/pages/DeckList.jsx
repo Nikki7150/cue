@@ -142,11 +142,12 @@ const DeckList = () => {
             </div>
             <SearchBar value={searchQuery} onChange={setSearchQuery} />
             <div className='tag-filter-row'>
+                Filters: 
                 {tags.map((tag) => (
                     <button
                         key={tag.id}
                         className={`tag-chip ${selectedTagId === tag.id ? 'active' : ''}`}
-                        style={{ backgroundColor: tag.color }}
+                        style={{ backgroundColor: selectedTagId === tag.id ? 'var(--white)' : tag.color }}
                         onClick={() => setSelectedTagId(selectedTagId === tag.id ? null : tag.id)}
                     >
                         {tag.name}
