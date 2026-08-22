@@ -3,9 +3,6 @@ import { FaTimes } from "react-icons/fa";
 import '../styles/SearchBar.css';
 
 const SearchBar = ({ value, onChange}) => {
-    const handleClear = () => {
-
-    }
     return (
         <div className="search-bar-container">
             <div className="search-bar">

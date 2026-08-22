@@ -20,15 +20,18 @@ const DeckList = () => {
     const [error, setError] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
     const [sortOrder, setSortOrder] = useState('newest');
+    const [selectedTagId, setSelectedTagId] = useState(null);
 
     const filteredDecks = decks.filter((deck) => {
         const query = searchQuery.toLowerCase();
-        const result = deck.title.toLowerCase().includes(query) ||
+        const matchesSearch = 
+            deck.title.toLowerCase().includes(query) ||
             deck.cards.some((card) => 
                 card.question.toLowerCase().includes(query) ||
                 card.answer.toLowerCase().includes(query)
             );
-        return result;
+        const matchesTag = !selectedTagId || deck.tagId === selectedTagId;
+        return matchesSearch && matchesTag;
     });
 
     const sortedDecks = [...filteredDecks].sort((a, b) => {
@@ -138,6 +141,18 @@ const DeckList = () => {
                 </button>
             </div>
             <SearchBar value={searchQuery} onChange={setSearchQuery} />
+            <div className='tag-filter-row'>
+                {tags.map((tag) => (
+                    <button
+                        key={tag.id}
+                        className={`tag-chip ${selectedTagId === tag.id ? 'active' : ''}`}
+                        style={{ backgroundColor: tag.color }}
+                        onClick={() => setSelectedTagId(selectedTagId === tag.id ? null : tag.id)}
+                    >
+                        {tag.name}
+                    </button>
+                ))}
+            </div>
             {loading && <LoadingSpinner />}
             <ul className="deck-list">
                 {sortedDecks.map((deck) => {
