@@ -63,3 +63,30 @@
 .flashcard-button:hover {
     color: var(--teal);
 }
+
+@media (max-width: 1024px) {
+    .flashcard-container {
+        width: 100%;
+        max-width: 900px;
+    }
+}
+
+@media (max-width: 768px) {
+    .flashcard-container {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+    }
+    .flashcard-inner,
+    .flashcard-front,
+    .flashcard-back {
+        padding: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .flashcard-button {
+        bottom: 6px;
+        right: 6px;
+        font-size: 1rem;
+    }
+}

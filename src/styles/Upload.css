@@ -92,3 +92,32 @@
     background-color: var(--teal);
     color: var(--sky-blue);
 }
+
+@media (max-width: 1024px) {
+    .upload-options {
+        flex-direction: column;
+    }
+    .upload-text,
+    .upload-box {
+        width: 100%;
+        height: auto;
+    }
+    .upload-box {
+        height: 50dvh;
+    }
+    .upload-button {
+        position: static;
+        transform: none;
+        margin: 20px auto;
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .upload-title {
+        font-size: 1.5rem;
+    }
+    .upload-box h3 {
+        font-size: 1rem;
+    }
+}

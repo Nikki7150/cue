@@ -83,3 +83,20 @@
     color: var(--sky-blue);
     background-color: var(--teal);
 }
+
+@media (max-width: 768px) {
+    .login-container {
+        margin-top: 10%;
+        padding-left: 0;
+        width: 90%;
+    }
+    #email, #password, #username {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-title {
+        font-size: 1.4em;
+    }
+}

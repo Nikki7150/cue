@@ -23,3 +23,19 @@
 .logout-button:hover {
     background-color: var(--navy);
 }
+
+@media (max-width: 768px) {
+    .user-popup {
+        left: 0;
+        bottom: 72px;
+        width: 100%;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .logout-button {
+        font-size: 1rem;
+    }
+}

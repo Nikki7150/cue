@@ -101,3 +101,34 @@
     width: 100%;
     text-align: center;
 }
+
+@media (max-width: 1024px) {
+    .review-buttons,
+    .review-page {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .review-header {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .review-text {
+        margin-top: 150px;
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .review-title {
+        font-size: 1.25rem;
+    }
+    .deck-title {
+        font-size: 1rem;
+    }
+    .review-text {
+        margin-top: 100px;
+        font-size: 1.2rem;
+    }
+}

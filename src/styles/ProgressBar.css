@@ -25,3 +25,13 @@
     text-align: right;
     font-family: 'Schoolbell', cursive;
 }
+
+@media (max-width: 480px) {
+    .progress-bar-wrapper {
+        gap: 4px;
+    }
+    .progress-bar-label {
+        font-size: 0.85rem;
+        min-width: auto;
+    }
+}

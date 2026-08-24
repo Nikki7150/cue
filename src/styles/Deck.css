@@ -58,3 +58,14 @@
     mask-composite: intersect;
     padding: 10% 5%;
 }
+
+@media (max-width: 768px) {
+    .deck {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    .deck:hover .deck-lid {
+        transform: translateX(12%) rotate(-3deg);
+    }
+}
