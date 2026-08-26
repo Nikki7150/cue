@@ -1,10 +1,14 @@
 # Cue
 
 ## Description
-
+As a high school student, I use a lot of Flashcard generator apps to make flashcards of my notes so I can study and improve my grade. It never really came to me that I could actually build a generator on my own just by using Gemini AI.
+After I saw someone on the internet suggest to make an AI flashcard maker using Gemini or Claude, I immediately opened my laptop and created a github repo for this app. 
+This was pretty simple to make. The only thing that was hard was getting the exact prompt to make the AI give me responses only in json without any markdown. But after several tries, I did manage to get the perfect prompt that generated the cards for me. 
+Other than that, I just added all my dashboard stuff like stats, saving cards, saving decks and tags, and signing in and creating profiles. Since I had done this a lot of times before, it was easier for me to create everything from scratch. 
+I also added some cool little ui elements and animations, like the lid of the deck container sliding open when hovering over it and the flip animation for the flashcard. It was really fun creating this app since it was so simple and yet a little complicated. I hope you have a great time using the app! Ciao!
 
 ## Features
-- As a guest user, without loggin in, you can only remain on the login page since I have out all the other pages under a protected route.
+- As a guest user, without logging in, you can only remain on the login page since I have out all the other pages under a protected route.
 - Signup using email, username, and password.
 - Login using email and password.
 - Go to the Upload tab to upload either .txt or .pdf files and generate flashcards for your pasted text.
@@ -41,10 +45,17 @@
 - Google Gemini API
 
 ## Limitations
-
+- No Google Auth login setup
+- No resume mid-deck according to progress
+- One tag per deck
+- No spaced-repetition for "Don't know" cards
+- No deck sharing
 
 ## Future Plans
-
+- Adding resume mid-deck according to progress saved in last session
+- Multiple tags per deck
+- Export deck as json file
+- Add spaced repetition and tracking for cards in each deck
 
 ## How to set up locally
 ### Prerequisites
@@ -103,3 +114,5 @@ npm run dev
 The app will be running at `http://localhost:5173`.
 
 ## Notes
+- Firestores test-mode rules expire after ~30days; the rules written above replace the test mode with rules scoped to each signed-in user's own data, so they don't expire.
+- Card generation is tuned via prompt instructions in `src/lib/generateCards.js` to scale flashcard count with input length rather than producing a fixed size summary. 
